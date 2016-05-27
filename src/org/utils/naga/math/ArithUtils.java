@@ -11,7 +11,8 @@ import org.utils.naga.interf.UtilsInterface;
  * <p>由于Java的简单类型不能够精确的对浮点数进行运算</p>
  * <p>这个工具类提供精 确的浮点数运算，包括加减乘除和四舍五入</p>
  * 
- * 2015‎年‎11‎月‎25‎日
+ * Create Date: 2015年11月25日
+ * Last Modify: 2016年5月26日
  * 
  * @author <a href="http://weibo.com/u/5131020927">Q-WHai</a>
  * @see <a href="http://blog.csdn.net/lemon_tree12138">http://blog.csdn.net/lemon_tree12138</a>

@@ -12,7 +12,8 @@ import org.utils.naga.web.interf.HTMLParserable;
  * 我是一个HTML解析工具，
  * 我负责解析网络上的HTML
  * </p>
- * 2015年12月15日
+ * Create Date: 2015年12月15日
+ * Last Modify: 2016年5月26日
  * 
  * @author <a href="http://weibo.com/u/5131020927">Q-WHai</a>
  * @see <a href="http://blog.csdn.net/lemon_tree12138">http://blog.csdn.net/lemon_tree12138</a>

@@ -4,7 +4,8 @@ package org.utils.naga.consts;
  * <p>
  * 数组的排序方向
  * </p>
- * 2016年1月18日
+ * Create Date: 2016年1月18日
+ * Last Modify: 2016年5月26日
  * 
  * @author <a href="http://weibo.com/u/5131020927">Q-WHai</a>
  * @see <a href="http://blog.csdn.net/lemon_tree12138">http://blog.csdn.net/lemon_tree12138</a>

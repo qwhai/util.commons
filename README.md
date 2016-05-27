@@ -1,8 +1,9 @@
-# Naga-UtilLibrary
+# JCore-UtilLibrary
 Description: 工具库 [持续更新]</br>
-本人CSDN博客 [点击链接](http://blog.csdn.net/lemon_tree12138)
 
-##内容目录
+----------------------------------------------
+
+# 内容目录
 
 -   StringUtils
     -   通用字符操作工具
@@ -64,3 +65,7 @@ Description: 工具库 [持续更新]</br>
     -   FileNameNotExistsException(文件不存在)
     -   LengthZeroException(长度为0)
     -   ObjectEmptyException(空对象，已过时)
+
+----------------------------------------------
+
+本人CSDN博客 [点击链接](http://blog.csdn.net/lemon_tree12138)

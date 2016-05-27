@@ -24,10 +24,17 @@ import javax.swing.JFrame;
 import javax.swing.filechooser.FileSystemView;
 
 /**
- * <p>运行后将当前屏幕截取，并最大化显示。 </p>
- * <p>拖拽鼠标，选择自己需要的部分。 按Esc键保存图片到桌面，并退出程序。</p>
- * <p>点击右上角（没有可见的按钮），退出程序，不保存图片。</p>
- * 2015‎年‎11‎月‎27‎日
+ * <p>
+ * 运行后将当前屏幕截取，并最大化显示。
+ *  </p>
+ * <p>
+ * 拖拽鼠标，选择自己需要的部分。 按Esc键保存图片到桌面，并退出程序。
+ * </p>
+ * <p>
+ * 点击右上角（没有可见的按钮），退出程序，不保存图片。
+ * </p>
+ * Create Date: 2015‎年‎11‎月‎27‎日
+ * Last Modify: 2016年5月26日
  * 
  * @author <a href="http://weibo.com/u/5131020927">Q-WHai</a>
  * @see <a href="http://blog.csdn.net/lemon_tree12138">http://blog.csdn.net/lemon_tree12138</a>

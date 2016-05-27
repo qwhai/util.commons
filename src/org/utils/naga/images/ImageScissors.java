@@ -22,7 +22,8 @@ import org.utils.naga.images.interf.ImageInterface;
  * <p>
  * 对图像进行剪切
  * </p>
- * 2015年12月30日
+ * Create Date: 2015年12月30日
+ * Last Modify: 2016年5月26日
  * 
  * @author <a href="http://weibo.com/u/5131020927">Q-WHai</a>
  * @see <a href="http://blog.csdn.net/lemon_tree12138">http://blog.csdn.net/

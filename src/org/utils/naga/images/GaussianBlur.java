@@ -20,7 +20,8 @@ import org.utils.naga.math.MathUtils;
  * <p>程序参考：</p>
  * <p>http://www.ruanyifeng.com/blog/2012/11/gaussian_blur.html</p>
  * <p>http://blog.csdn.net/jia20003/article/details/7234741</p>
- * 2015年12月29日
+ * Create Date: 2015年12月29日
+ * Last Modify: 2016年5月26日
  * 
  * @author <a href="http://weibo.com/u/5131020927">Q-WHai</a>
  * @see <a href="http://blog.csdn.net/lemon_tree12138">http://blog.csdn.net/

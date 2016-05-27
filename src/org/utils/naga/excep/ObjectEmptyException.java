@@ -1,9 +1,14 @@
 package org.utils.naga.excep;
 
 /**
- * <p>空对象异常</p>
- * <p>(暂时保留吧，可以用NullpointException代替.重复造轮子了.-_-!)</p>
- * 2015‎年‎11‎月‎25‎日
+ * <p>
+ * 空对象异常
+ * </p>
+ * <p>
+ * (暂时保留吧，可以用NullpointException代替.重复造轮子了.-_-!)
+ * </p>
+ * Create Date: 2015‎年‎11‎月‎25‎日
+ * Last Modify: 2016年5月26日
  * 
  * @author <a href="http://weibo.com/u/5131020927">Q-WHai</a>
  * @see <a href="http://blog.csdn.net/lemon_tree12138">http://blog.csdn.net/lemon_tree12138</a>
