@@ -300,4 +300,25 @@ public final class FileUtils implements UtilsInterface {
         File file = new File(oldName);
         file.renameTo(new File(newName));
     }
+    
+    /**
+     * 删除一个非空的文件夹
+     * 
+     * @param folderName
+     * @return
+     */
+    public static boolean deleteFolder(File folderName) {
+        if (folderName.isDirectory()) {
+            String[] children = folderName.list();
+            // 递归删除目录中的子目录下
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteFolder(new File(folderName, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+        }
+        // 目录此时为空，可以删除
+        return folderName.delete();
+    }
 }

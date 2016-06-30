@@ -22,14 +22,14 @@ public class HeapSort implements Sortable {
         if (array == null) {
             return null;
         }
-        MaxHeap h = new MaxHeap();
-        h.init(array);
+        MaxHeap maxHeap = new MaxHeap();
+        maxHeap.create(array);
 
         for (int i = 0; i < array.length; i++) {
-            h.remove();
+            maxHeap.removeAndFixit();
         }
 
-        System.arraycopy(h.queue, 1, array, 0, array.length);
+        System.arraycopy(maxHeap.queue, 1, array, 0, array.length);
 
         return array;
     }
@@ -46,7 +46,10 @@ public class HeapSort implements Sortable {
      */
     private static class MaxHeap {
 
-        void init(int[] data) {
+        private int size = 0;
+        private int[] queue;
+        
+        public void create(int[] data) {
             this.queue = new int[data.length + 1];
             for (int i = 0; i < data.length; i++) {
                 queue[++size] = data[i];
@@ -54,44 +57,45 @@ public class HeapSort implements Sortable {
             }
         }
 
-        private int size = 0;
-
-        private int[] queue;
-
-        public void remove() {
+        // 这里对可以确定有序的元素进行移除，再对剩下无序的序列进行排序
+        public void removeAndFixit() {
             ArrayUtils.swap(queue, 1, size--);
             fixDown(1);
         }
 
-        // fixdown
-        private void fixDown(int k) {
-            int j;
-            while ((j = k << 1) <= size) {
-                if (j < size && queue[j] < queue[j + 1]) {
-                    j++;
+        // 对于交换后不满足大顶堆的堆，进行重新调整
+        private void fixDown(int fatherIndex) {
+            int childIndex = 0;
+            int leftChildIndex = 0;
+            int rightChildIndex = 0;
+            while ((childIndex = fatherIndex << 1) <= size) {
+                leftChildIndex = childIndex;
+                rightChildIndex = childIndex + 1;
+                if (leftChildIndex < size && queue[leftChildIndex] < queue[rightChildIndex]) {
+                    childIndex++;
                 }
 
                 // 不用交换
-                if (queue[k] > queue[j]) {
+                if (queue[fatherIndex] > queue[childIndex]) {
                     break;
                 }
 
-                ArrayUtils.swap(queue, j, k);
-                k = j;
+                ArrayUtils.swap(queue, childIndex, fatherIndex);
+                fatherIndex = childIndex;
             }
         }
 
-        private void fixUp(int k) {
-            while (k > 1) {
-                int j = k >> 1;
-                if (queue[j] > queue[k]) {
+        // 在初始化阶段，需要构建所有元素满足大顶堆
+        private void fixUp(int leafIndex) {
+            while (leafIndex > 1) {
+                int fatherIndex = leafIndex >> 1;
+                if (queue[fatherIndex] > queue[leafIndex]) {
                     break;
                 }
 
-                ArrayUtils.swap(queue, j, k);
-                k = j;
+                ArrayUtils.swap(queue, fatherIndex, leafIndex);
+                leafIndex = fatherIndex;
             }
         }
-
     }
 }

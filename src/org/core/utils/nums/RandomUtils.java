@@ -162,6 +162,24 @@ public class RandomUtils implements UtilsInterface {
     }
     
     /**
+     * 生产一个可重复的随机数序列
+     * 
+     * @param end
+     *      随机数的最大边界
+     * @param count
+     *      随机数的个数
+     * @return
+     *      随机数序列
+     */
+    public List<Integer> randomList(int end, int count) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            list.add(nextInt(0, end));
+        }
+        return list;
+    }
+    
+    /**
      * 随机生成和为S的N个正整数
      * 
      * @param sum
