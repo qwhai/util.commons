@@ -142,6 +142,35 @@ public final class FileSearchUtils implements UtilsInterface {
     }
     
     /**
+     * 获得一个文件目录下的所有文件
+     * 
+     * @param folderName
+     *      文件目录
+     * @return
+     *      子文件
+     * @throws FileNameNotExistsException
+     *      文件名不存在异常
+     * @throws NotDirectoryException
+     *      不是目录异常
+     */
+    public static File[] getAllSubFiles(String folderName) throws FileNameNotExistsException, NotDirectoryException {
+        if (StringUtils.isEmpty(folderName)) {
+            throw new NullPointerException("目录名为空，请输入文件目录");
+        }
+        
+        File folderFile = new File(folderName);
+        if (!folderFile.exists()) {
+            throw new FileNameNotExistsException(folderName + "当前文件目录不存在");
+        }
+        
+        if (!folderFile.isDirectory()) {
+            throw new NotDirectoryException(folderName + "不是目录");
+        }
+        
+        return folderFile.listFiles();
+    }
+    
+    /**
      * 获得一个文件目录下的所有文件的完整名称
      * 
      * @param folderName
