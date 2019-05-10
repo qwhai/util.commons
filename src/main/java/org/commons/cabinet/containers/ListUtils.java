@@ -7,11 +7,10 @@ import org.commons.cabinet.consts.SortDirect;
 import org.commons.cabinet.excep.CannotInstanceException;
 
 /**
- * <p>
  * 关于List列表的工具类
- * </p>
- * Create Date: 2015年12月24日
- * Last Modify: 2016年5月26日
+ *
+ * Create Date: 2015-12-24
+ * Last Modify: 2016-05-26
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>

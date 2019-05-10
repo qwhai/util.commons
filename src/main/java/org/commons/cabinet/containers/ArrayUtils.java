@@ -10,11 +10,10 @@ import org.commons.cabinet.excep.NotNumberException;
 import org.commons.cabinet.str.StringUtils;
 
 /**
- * <p>
  * 这个是一个数组工具类，处理与数组相关的操作
- * </p>
- * Create Date: 2015‎年‎11‎月‎25‎日
- * Last Modify: 2016年5月26日
+ *
+ * Create Date: 2015‎-‎11‎-‎25
+ * Last Modify: 2016-05-26
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>

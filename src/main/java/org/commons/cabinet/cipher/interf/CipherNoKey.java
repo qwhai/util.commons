@@ -4,11 +4,10 @@ import org.commons.cabinet.excep.IrreversibleException;
 import org.commons.cabinet.excep.StrategyException;
 
 /**
- * <p>
  * 公共的加密工具接口（没有密钥的类型）
- * </p>
- * Create Date: 2016年4月22日
- * Last Modify: 2016年4月22日
+ *
+ * Create Date: 2016-04-22
+ * Last Modify: 2016-04-22
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>

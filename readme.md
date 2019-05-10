@@ -40,7 +40,7 @@
 - 网络
   - 网络工具类
   - Html解析工具
-- BloomFilter
+- [BloomFilter](src/main/java/org/commons/cabinet/filter/BloomFilter.java)
 - 日期时间工具
   - [DateUtils](src/main/java/org/commons/cabinet/datetime/DateUtils.java)
   - [TimeUtils](src/main/java/org/commons/cabinet/datetime/TimeUtils.java)

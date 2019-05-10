@@ -1,11 +1,10 @@
 package org.commons.cabinet.consts;
 
 /**
- * <p>
  * 大小比较的结果值
- * </p>
- * Create Date: 2015年12月9日
- * Last Modify: 2016年5月26日
+ *
+ * Create Date: 2015-12-09
+ * Last Modify: 2016-05-26
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>

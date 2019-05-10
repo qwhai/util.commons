@@ -9,11 +9,10 @@ import java.util.Map;
 import org.commons.cabinet.excep.CannotInstanceException;
 
 /**
- * <p>
  * 与Map相关的工具类
- * </p>
- * Create Date: 2015‎年‎11‎月‎25‎日
- * Last Modify: 2016年5月26日
+ *
+ * Create Date: 2015‎-‎11‎-‎25‎
+ * Last Modify: 2016-05-26
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>

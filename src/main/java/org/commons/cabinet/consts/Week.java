@@ -1,11 +1,10 @@
 package org.commons.cabinet.consts;
 
 /**
- * <p>
  * 星期枚举
- * </p>
- * Create Date: 2015年12月3日
- * Last Modify: 2016年5月26日
+ *
+ * Create Date: 2015-12-03
+ * Last Modify: 2016-05-26
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>

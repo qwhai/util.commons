@@ -7,11 +7,10 @@ import org.commons.cabinet.excep.StrategyException;
 import org.commons.cabinet.cipher.interf.CipherWithKey;
 
 /**
- * <p>
  * SMS4加密策略实现
- * </p>
- * Create Date: 2015年12月15日
- * Last Modify: 2016年4月22日
+ *
+ * Create Date: 2015-12-15
+ * Last Modify: 2016-04-22
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>

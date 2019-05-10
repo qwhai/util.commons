@@ -3,11 +3,10 @@ package org.commons.cabinet.consts;
 import org.commons.cabinet.excep.CannotInstanceException;
 
 /**
- * <p>
  * 常量类
- * </p>
- * Create Date: 2015年11月15日
- * Last Modify: 2016年5月26日
+ *
+ * Create Date: 2015-11-15
+ * Last Modify: 2016-05-26
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>

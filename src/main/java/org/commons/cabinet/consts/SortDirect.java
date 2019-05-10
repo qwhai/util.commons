@@ -1,11 +1,10 @@
 package org.commons.cabinet.consts;
 
 /**
- * <p>
  * 数组的排序方向
- * </p>
- * Create Date: 2016年1月18日
- * Last Modify: 2016年5月26日
+ *
+ * Create Date: 2016-01-18
+ * Last Modify: 2016-05-26
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
@@ -17,7 +16,7 @@ public enum SortDirect {
     
     private String desc;
     
-    private SortDirect(String _desc) {
+    SortDirect(String _desc) {
         this.desc = _desc;
     }
     

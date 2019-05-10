@@ -8,8 +8,10 @@ import java.util.Date;
 /**
  * 日期工具类
  *
- * @Author: Q-WHai
- * @Date: Created in 15:46 2019/05/10
+ * @author Q-WHai
+ *
+ * Create Date: 2019-05-10
+ * Last Modify: 2019-05-10
  */
 public class DateUtils {
 

@@ -5,11 +5,10 @@ import org.commons.cabinet.excep.IrreversibleException;
 import org.commons.cabinet.excep.StrategyException;
 
 /**
- * <p>
  * 盛放不同没有密钥加密策略的容器类
- * </p>
- * Create Date: 2016年4月22日
- * Last Modify: 2016年4月22日
+ *
+ * Create Date: 2016-04-22
+ * Last Modify: 2016-04-22
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>

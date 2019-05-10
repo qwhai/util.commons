@@ -7,14 +7,11 @@ import org.commons.cabinet.excep.IrreversibleException;
 import org.commons.cabinet.excep.StrategyException;
 
 /**
- * <p>
  * 盛放不同策略的容器类
- * </p>
- * <p>
  * 客户端可以通过该类来进行加密（或解密）操作
- * </p>
- * Create Date: 2015年12月15日
- * Last Modify: 2016年5月26日
+ *
+ * Create Date: 2015-12-15
+ * Last Modify: 2016-05-26
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
