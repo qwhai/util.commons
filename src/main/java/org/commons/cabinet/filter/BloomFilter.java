@@ -3,14 +3,11 @@ package org.commons.cabinet.filter;
 import java.util.BitSet;
 
 /**
- * <p>
  * 布隆过滤器
- * </p>
- * <p>
  * 用于一些去重过滤
- * </p>
- * Create Date: 2015年11月15日
- * Last Modify: 2016年5月26日
+ *
+ * Create Date: 2015-11-15
+ * Last Modify: 2019-05-10
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
@@ -75,17 +72,18 @@ public final class BloomFilter {
     
     /**
      * 哈希函数类
-     * 2015年11月25日
+     *
+     * Create Date: 2015-11-25
+     * Last Modify: 2019-05-10
      * 
-     * @author <a href="http://weibo.com/u/5131020927">Q-WHai</a>
-     * @see <a href="http://blog.csdn.net/lemon_tree12138">http://blog.csdn.net/lemon_tree12138</a>
-     * @version 0.1
+     * @author Q-WHai
+     * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
      */
-    public static class SimpleHash {
+    public class SimpleHash {
         private int cap;
         private int seed;
 
-        public SimpleHash(int cap, int seed) {
+        SimpleHash(int cap, int seed) {
             this.cap = cap;
             this.seed = seed;
         }
@@ -98,7 +96,7 @@ public final class BloomFilter {
          * @return
          *          返回哈希的整型结果
          */
-        public int hash(String value) {
+        int hash(String value) {
             int result = 0;
             int len = value.length();
             for (int i = 0; i < len; i++) {
