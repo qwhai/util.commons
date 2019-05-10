@@ -1,9 +1,10 @@
 ## commons-core
-Description: 工具库 [持续更新]
+> Description: 工具库 [持续更新]
 
-[![lang](https://img.shields.io/badge/lang-java-brightgreen.svg)]()
-[![ide](https://img.shields.io/badge/ide-IntelliJ%20IDEA-brightgreen.svg)]()
-[![maven](https://img.shields.io/badge/maven-3.6.0-brightgreen.svg)]()
+![](https://img.shields.io/badge/java-1.8-brightgreen.svg)
+![](https://img.shields.io/badge/maven-3.6.1-orangered.svg)
+![](https://img.shields.io/badge/ide-IntelliJ%20IDEA-rosybrown.svg)
+![](https://img.shields.io/badge/version-2.1.0-cornflowerblue.svg)
 
 ----------------------------------------------
 
