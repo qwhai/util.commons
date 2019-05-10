@@ -1,7 +1,5 @@
 package org.commons.cabinet.chars;
 
-import org.commons.cabinet.excep.CannotInstanceException;
-
 /**
  * 字符串操作工具
  *
@@ -12,11 +10,6 @@ import org.commons.cabinet.excep.CannotInstanceException;
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
  */
 public final class CharUtils {
-
-    // 禁止实例化
-    private CharUtils() throws CannotInstanceException {
-        throw new CannotInstanceException("请不要试图初始化我");
-    }
 
     /**
      * 判断一个字符是否是数字
