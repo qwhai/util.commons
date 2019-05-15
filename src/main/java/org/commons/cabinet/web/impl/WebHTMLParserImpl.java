@@ -2,7 +2,6 @@ package org.commons.cabinet.web.impl;
 
 import java.io.IOException;
 
-import org.commons.cabinet.io.FileWriteUtils;
 import org.commons.cabinet.web.interf.HTMLParserable;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -51,15 +50,15 @@ public final class WebHTMLParserImpl implements HTMLParserable {
 
     @Override
     public void downloadHTML(String url, String savePath) throws IOException {
-        String text = requestHTMLToString(url);
-        FileWriteUtils.writeFileCover(savePath, text);
+        //String text = requestHTMLToString(url);
+        //FileWriteUtils.writeFileCover(savePath, text);
     }
-    
+
     @Override
     public void downloadHTML(String url, String savePath, int delay)
             throws IOException {
-        String text = requestHTMLToString(url, delay);
-        FileWriteUtils.writeFileCover(savePath, text);
+        //String text = requestHTMLToString(url, delay);
+        //FileWriteUtils.writeFileCover(savePath, text);
     }
 
     @Override

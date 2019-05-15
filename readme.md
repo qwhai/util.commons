@@ -30,7 +30,6 @@
   - MapUtils
 - FileUtils
   - [FileIO](src/main/java/org/commons/cabinet/io/FileIO.java)
-  - 写文件工具
   - 文件检索工具
 - SerializationUtils
 - ThreadUtils

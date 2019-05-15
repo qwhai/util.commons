@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import org.commons.cabinet.io.FileSearchUtils;
 import org.commons.cabinet.io.FileUtils;
 import org.commons.cabinet.images.interf.ImageInterface;
 import org.commons.cabinet.images.libs.AnimatedGifEncoder;
@@ -78,16 +77,16 @@ public class GifBuilder implements ImageInterface {
      *      读写异常
      */
     public void create(String sourceFolder, String targetPath, int delay) throws IOException {
-        String[] imgPaths = FileSearchUtils.getAllFileFullName(sourceFolder);
-        FileUtils.copyFileByBuffer(imgPaths[1], targetPath);
-        
-        animatedGifEncoder.start(targetPath);
-        BufferedImage buffer = null;
-        for (int i = 0; i < imgPaths.length; i++) {
-            animatedGifEncoder.setDelay(delay);
-            buffer = ImageIO.read(new File(imgPaths[i]));
-            animatedGifEncoder.addFrame(buffer);
-        }
-        animatedGifEncoder.finish();
+        //String[] imgPaths = FileSearchUtils.getAllFileFullName(sourceFolder);
+        //FileUtils.copyFileByBuffer(imgPaths[1], targetPath);
+        //
+        //animatedGifEncoder.start(targetPath);
+        //BufferedImage buffer = null;
+        //for (int i = 0; i < imgPaths.length; i++) {
+        //    animatedGifEncoder.setDelay(delay);
+        //    buffer = ImageIO.read(new File(imgPaths[i]));
+        //    animatedGifEncoder.addFrame(buffer);
+        //}
+        //animatedGifEncoder.finish();
     }
 }
