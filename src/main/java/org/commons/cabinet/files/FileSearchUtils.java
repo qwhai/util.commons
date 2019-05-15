@@ -38,6 +38,7 @@ public final class FileSearchUtils {
      * @throws IOException
      *      读写异常
      */
+    /**
     public static boolean containsTerm(String filePath, String term) throws IOException {
         List<String> lines = FileReadUtils.readLines(filePath);
         if (lines == null || lines.size() == 0) {
@@ -54,7 +55,7 @@ public final class FileSearchUtils {
         }
         
         return false;
-    }
+    }*/
     
     /**
      * 获得某一文件目录下的所有文件列表
