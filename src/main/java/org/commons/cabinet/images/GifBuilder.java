@@ -6,8 +6,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import org.commons.cabinet.files.FileSearchUtils;
-import org.commons.cabinet.files.FileUtils;
+import org.commons.cabinet.io.FileSearchUtils;
+import org.commons.cabinet.io.FileUtils;
 import org.commons.cabinet.images.interf.ImageInterface;
 import org.commons.cabinet.images.libs.AnimatedGifEncoder;
 

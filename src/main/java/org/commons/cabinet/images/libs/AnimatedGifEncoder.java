@@ -577,7 +577,7 @@ class LZWEncoder {
     // ratio decreases, but after the table fills. The variable-length output
     // codes are re-sized at this point, and a special CLEAR code is generated
     // for the decompressor. Late addition: construct the table according to
-    // file size for noticeable speed improvement on small files. Please direct
+    // file size for noticeable speed improvement on small io. Please direct
     // questions about this implementation to ames!jaw.
 
     int g_init_bits;
@@ -812,10 +812,10 @@ class LZWEncoder {
  * Computation in Neural Systems" Vol. 5 (1994) pp 351-367. for a discussion of
  * the algorithm.
  * 
- * Any party obtaining a copy of these files from the author, directly or
+ * Any party obtaining a copy of these io from the author, directly or
  * indirectly, is granted, free of charge, a full and unrestricted irrevocable,
  * world-wide, paid up, royalty-free, nonexclusive right and license to deal in
- * this software and documentation files (the "Software"), including without
+ * this software and documentation io (the "Software"), including without
  * limitation the rights to use, copy, modify, merge, publish, distribute,
  * sublicense, and/or sell copies of the Software, and to permit persons who
  * receive copies from any such party to do so, with the only requirement being

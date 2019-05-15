@@ -1,9 +1,8 @@
-package org.commons.cabinet.files;
+package org.commons.cabinet.io;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.NotDirectoryException;
-import java.util.List;
 
 import org.commons.cabinet.excep.CannotInstanceException;
 import org.commons.cabinet.excep.FileNameNotExistsException;

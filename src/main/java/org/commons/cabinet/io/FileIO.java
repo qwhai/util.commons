@@ -1,4 +1,4 @@
-package org.commons.cabinet.files;
+package org.commons.cabinet.io;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

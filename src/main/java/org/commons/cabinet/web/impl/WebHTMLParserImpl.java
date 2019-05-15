@@ -2,7 +2,7 @@ package org.commons.cabinet.web.impl;
 
 import java.io.IOException;
 
-import org.commons.cabinet.files.FileWriteUtils;
+import org.commons.cabinet.io.FileWriteUtils;
 import org.commons.cabinet.web.interf.HTMLParserable;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

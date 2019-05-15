@@ -1,6 +1,6 @@
 package org.commons.cabinet;
 
-import org.commons.cabinet.files.FileIO;
+import org.commons.cabinet.io.FileIO;
 import org.junit.Test;
 
 import java.io.IOException;
