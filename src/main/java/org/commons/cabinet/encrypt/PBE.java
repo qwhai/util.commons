@@ -11,5 +11,6 @@ package org.commons.cabinet.encrypt;
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
  */
+@Deprecated
 public class PBE {
 }

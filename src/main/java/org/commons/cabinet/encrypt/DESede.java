@@ -15,6 +15,7 @@ import org.commons.cabinet.encrypt.interf.Encrypt;
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
  */
+@Deprecated
 public class DESede implements Encrypt, Decrypt {
 
     @Override

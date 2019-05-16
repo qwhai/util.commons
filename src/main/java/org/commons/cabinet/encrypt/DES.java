@@ -30,6 +30,7 @@ import java.security.spec.InvalidKeySpecException;
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
  */
+@Deprecated
 public class DES implements Encrypt, Decrypt {
 
     private final Logger logger = Logger.getLogger(DES.class);
