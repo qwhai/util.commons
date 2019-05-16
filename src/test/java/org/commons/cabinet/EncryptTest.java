@@ -1,10 +1,7 @@
 package org.commons.cabinet;
 
 import org.commons.cabinet.containers.ArrayUtils;
-import org.commons.cabinet.encrypt.Base64;
-import org.commons.cabinet.encrypt.MD5;
-import org.commons.cabinet.encrypt.SHA1;
-import org.commons.cabinet.encrypt.SMS4;
+import org.commons.cabinet.encrypt.*;
 import org.commons.cabinet.encrypt.interf.Encoder;
 import org.commons.cabinet.encrypt.interf.Encrypt;
 import org.junit.Test;
@@ -184,5 +181,31 @@ public class EncryptTest extends Testable {
         byte[] data = encrypt.decode(cipher);
         if (null == data) return;
         logger.info(new String(data).trim());
+    }
+
+    @Test
+    public void test16() {
+        Encoder encoder = new SHA256();
+        byte[] cipher = encoder.encode("你好，世界".getBytes());
+
+        String s = "";
+        for (byte b : cipher) {
+            s = String.format("%s%s", s, ByteUtils.byteToHexString(b));
+        }
+
+        logger.info(s.toLowerCase());
+    }
+
+    @Test
+    public void test17() {
+        Encoder encoder = new SHA256();
+        byte[] cipher = encoder.encode("你好，世界");
+
+        String s = "";
+        for (byte b : cipher) {
+            s = String.format("%s%s", s, ByteUtils.byteToHexString(b));
+        }
+
+        logger.info(s.toLowerCase());
     }
 }

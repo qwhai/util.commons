@@ -53,10 +53,11 @@
   - 选择排序
   - Shell排序
 - 加密算法
-  - MD5
-  - SHA1
-  - SMS4
-  - Base64
+  - [Base64](src/main/java/org/commons/cabinet/encrypt/Base64.java)
+  - [MD5](src/main/java/org/commons/cabinet/encrypt/MD5.java)
+  - [SHA1](src/main/java/org/commons/cabinet/encrypt/SHA1.java)
+  - [SHA256](src/main/java/org/commons/cabinet/encrypt/SHA256.java)
+  - [SMS4](src/main/java/org/commons/cabinet/encrypt/SMS4.java)
 - CharUtils
 - 纯粹好玩
   - IdentityCardVerification
