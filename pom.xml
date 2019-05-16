@@ -4,9 +4,9 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.commons</groupId>
-  <artifactId>cabinet</artifactId>
-  <version>2.1.1</version>
+  <groupId>pers.hai.util</groupId>
+  <artifactId>commons</artifactId>
+  <version>2.1.2</version>
 
   <name>commons.core</name>
   <!-- FIXME change it to the project's website -->
