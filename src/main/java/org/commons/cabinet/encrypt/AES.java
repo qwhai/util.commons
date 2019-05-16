@@ -1,6 +1,7 @@
 package org.commons.cabinet.encrypt;
 
 import org.apache.log4j.Logger;
+import org.commons.cabinet.encrypt.excep.UnsetKeyException;
 import org.commons.cabinet.encrypt.interf.Decrypt;
 import org.commons.cabinet.encrypt.interf.Encrypt;
 
@@ -32,11 +33,17 @@ public class AES implements Encrypt, Decrypt {
 
     @Override
     public byte[] encrypt(byte[] data) {
+        if (null == key)
+            throw new UnsetKeyException("未设置key");
+
         return aes(data, Cipher.ENCRYPT_MODE);
     }
 
     @Override
     public byte[] decrypt(byte[] cipher) {
+        if (null == key)
+            throw new UnsetKeyException("未设置key");
+
         return aes(cipher, Cipher.DECRYPT_MODE);
     }
 

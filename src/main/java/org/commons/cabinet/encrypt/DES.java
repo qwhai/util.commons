@@ -1,6 +1,7 @@
 package org.commons.cabinet.encrypt;
 
 import org.apache.log4j.Logger;
+import org.commons.cabinet.encrypt.excep.UnsetKeyException;
 import org.commons.cabinet.encrypt.interf.Decrypt;
 import org.commons.cabinet.encrypt.interf.Encrypt;
 
@@ -40,11 +41,17 @@ public class DES implements Encrypt, Decrypt {
 
     @Override
     public byte[] encrypt(byte[] plain) {
+        if (null == key)
+            throw new UnsetKeyException("未设置key");
+
         return des(plain, Cipher.ENCRYPT_MODE);
     }
 
     @Override
     public byte[] decrypt(byte[] cipher) {
+        if (null == key)
+            throw new UnsetKeyException("未设置key");
+
         return des(cipher, Cipher.DECRYPT_MODE);
     }
 
