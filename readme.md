@@ -57,6 +57,9 @@
   - [MD5](src/main/java/org/commons/cabinet/encrypt/MD5.java)
   - [SHA1](src/main/java/org/commons/cabinet/encrypt/SHA1.java)
   - [SHA256](src/main/java/org/commons/cabinet/encrypt/SHA256.java)
+  - [DES](src/main/java/org/commons/cabinet/encrypt/DES.java)
+  - [AES](src/main/java/org/commons/cabinet/encrypt/AES.java)
+  - [RC4](src/main/java/org/commons/cabinet/encrypt/RC4.java)
   - [SMS4](src/main/java/org/commons/cabinet/encrypt/SMS4.java)
 - CharUtils
 - 纯粹好玩
