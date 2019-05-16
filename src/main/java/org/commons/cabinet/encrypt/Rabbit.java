@@ -4,9 +4,10 @@ import org.commons.cabinet.encrypt.excep.UnsetKeyException;
 import org.commons.cabinet.encrypt.interf.Encrypt;
 
 /**
- * Rabbit加密算法
- *
- * Rabbit的每次加密，其结果均不相同
+ * Rabbit流密码加密算法
+ * 1. 密钥长度128位
+ * 2. Rabbit的每次加密，其结果均不相同，即一次一密
+ * 3. 支持最大加密消息长度为2^64 Bytes，即16TB。若消息超过该长度，则需要更换密钥对剩下的消息进行处理。
  *
  * Create Time: 2019/05/16 17:50
  * Last Modify: 2019/05/16
@@ -32,6 +33,7 @@ public class Rabbit implements Encrypt {
     // 此处设置的key，可以是从一个字符串中转换而来
     public void setKey(byte[] key) {
         this.key = key;
+        keySetup();
     }
 
     @Override
@@ -39,9 +41,26 @@ public class Rabbit implements Encrypt {
         if (null == key)
             throw new UnsetKeyException("未设置key");
 
-        keySetup();
+        //keySetup();
 
-        return new byte[0];
+        byte[] cipher = new byte[16];
+        int i, j, m;
+        int[] k = new int[4];
+        byte[] t;
+        for (i = 0; i < plain.length; i += 16) {
+            next_state();
+            k[0] = os2ip(plain, i * 16 + 0) ^ x[0] ^ (x[5] >>> 16) ^ (x[3] << 16);
+            k[1] = os2ip(plain, i * 16 + 4) ^ x[2] ^ (x[7] >>> 16) ^ (x[5] << 16);
+            k[2] = os2ip(plain, i * 16 + 8) ^ x[4] ^ (x[1] >>> 16) ^ (x[7] << 16);
+            k[3] = os2ip(plain, i * 16 + 12) ^ x[6] ^ (x[3] >>> 16) ^ (x[1] << 16);
+            for (j = 0; j < 4; j++) {
+                t = i2osp(k[j]);
+                for (m = 0; m < 4; m++)
+                    cipher[i * 16 + j * 4 + m] = t[m];
+            }
+        }
+
+        return cipher;
     }
 
     /**
@@ -64,24 +83,6 @@ public class Rabbit implements Encrypt {
             }
         }
     }*/
-
-    public void cipher(byte[] p_src, byte[] p_dest, long data_size) {
-        int i, j, m;
-        int[] k = new int[4];
-        byte[] t;
-        for (i = 0; i < data_size; i += 16) {
-            next_state();
-            k[0] = os2ip(p_src, i * 16 + 0) ^ x[0] ^ (x[5] >>> 16) ^ (x[3] << 16);
-            k[1] = os2ip(p_src, i * 16 + 4) ^ x[2] ^ (x[7] >>> 16) ^ (x[5] << 16);
-            k[2] = os2ip(p_src, i * 16 + 8) ^ x[4] ^ (x[1] >>> 16) ^ (x[7] << 16);
-            k[3] = os2ip(p_src, i * 16 + 12) ^ x[6] ^ (x[3] >>> 16) ^ (x[1] << 16);
-            for (j = 0; j < 4; j++) {
-                t = i2osp(k[j]);
-                for (m = 0; m < 4; m++)
-                    p_dest[i * 16 + j * 4 + m] = t[m];
-            }
-        }
-    }
 
     // ------------------------------------------------- 内部方法分隔线 --------------------------------------------------
 

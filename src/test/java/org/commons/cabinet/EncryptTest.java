@@ -265,10 +265,10 @@ public class EncryptTest extends Testable {
         Rabbit rabbit = new Rabbit();
         rabbit.setKey(key);
 
-        byte[] cipher = new byte[16];
-        // -55, 33, 24, 44, 91, 17, -68, -121, -58, -8, 83, -43, -106, 79, 126, 60
-
-        rabbit.cipher(data, cipher, data.length);
-        logger.info(ArrayUtils.output(cipher));
+        byte[] cipher;
+        for (int i = 0; i < 20; i++) {
+            cipher = rabbit.encrypt(data);
+            logger.info(String.format("第%d次加密：%s", i + 1, ArrayUtils.output(cipher)));
+        }
     }
 }
