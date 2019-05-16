@@ -25,6 +25,7 @@ public class AES implements Encrypt, Decrypt {
 
     private byte[] key = null;
 
+    // 此处设置的key，可以是从一个字符串中转换而来
     public void setKey(byte[] key) {
         this.key = key;
     }
