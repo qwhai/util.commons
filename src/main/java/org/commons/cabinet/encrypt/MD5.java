@@ -1,33 +1,32 @@
-package org.commons.cabinet.cipher.impl;
+package org.commons.cabinet.encrypt;
 
-import org.commons.cabinet.excep.IrreversibleException;
-import org.commons.cabinet.cipher.interf.CipherNoKey;
+import org.commons.cabinet.ByteUtils;
+import org.commons.cabinet.encrypt.interf.Encoder;
 
 /**
  * MD5哈希明文策略
  *
  * Create Date: 2015-12-15
- * Last Modify: 2016-04-22
+ * Last Modify: 2019-05-16
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
  */
-public final class MD5Impl implements CipherNoKey {
+public final class MD5 implements Encoder {
 
     // RFC1321中定义的标准4*4矩阵的常量定义。
-    static final int S11 = 7, S12 = 12, S13 = 17, S14 = 22;
-    static final int S21 = 5, S22 = 9, S23 = 14, S24 = 20;
-    static final int S31 = 4, S32 = 11, S33 = 16, S34 = 23;
-    static final int S41 = 6, S42 = 10, S43 = 15, S44 = 21;
+    private static final int S11 = 7, S12 = 12, S13 = 17, S14 = 22;
+    private static final int S21 = 5, S22 = 9, S23 = 14, S24 = 20;
+    private static final int S31 = 4, S32 = 11, S33 = 16, S34 = 23;
+    private static final int S41 = 6, S42 = 10, S43 = 15, S44 = 21;
 
     // 按RFC1321标准定义不可变byte型数组PADDING
-    static final byte[] PADDING = { -128, 0, 0, 0, 0, 0, 0, 0,
-
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    private static final byte[] PADDING = {
+            -128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    };
 
     // MD5计算过程中的3组核心数据，采用数组形式存放
     private long[] state = new long[4]; // 计算状态(分别对应a b c d)
@@ -36,29 +35,31 @@ public final class MD5Impl implements CipherNoKey {
 
     private long[] count = new long[2]; // 位个数
 
-    // 最新一次计算结果的16进制ASCII字符串表示，代表了16个字符串形式的MD5值
-    public String resultStr;
-
     // 最新一次计算结果的2进制数组表示，一共16个字节，代表了128bit形式的MD5值
-    public byte[] digest = new byte[16];
+    private byte[] digest = new byte[16];
 
     @Override
-    public byte[] encryption(String plaintext) {
+    public byte[] encode(byte[] src) {
         md5Init(); // 初始化
-        md5Update(plaintext.getBytes(), plaintext.length());// 调用MD5的主计算过程
+        md5Update(src, src.length); // 调用MD5的主计算过程
         md5Final(); // 输出结果到digest数组中
+
+        String data = "";
         for (int i = 0; i < 16; i++) {
-            resultStr += byteToHEX(digest[i]); // 将digest数组中的每个byte型数据转为16进制形式的字符串
+            // 将digest数组中的每个byte型数据转为16进制形式的字符串
+            data = String.format("%s%s", data, ByteUtils.byteToHexString(digest[i]));
         }
-        
-        return resultStr.getBytes();
+
+        return data.getBytes();
     }
 
     @Override
-    public String decryption(byte[] ciphertext) throws IrreversibleException {
-        throw new IrreversibleException("MD5采用哈希算法加密，不可逆转。");
+    public byte[] encode(String src) {
+        return encode(src.getBytes());
     }
-    
+
+    // ------------------------------------------------- 内部方法分隔线 --------------------------------------------------
+
     // md5初始化函数.初始化核心变量.
     private void md5Init() {
         state[0] = 0x67452301L; // 定义state为RFC1321中定义的标准幻数
@@ -66,11 +67,10 @@ public final class MD5Impl implements CipherNoKey {
         state[2] = 0x98badcfeL; // 定义state为RFC1321中定义的标准幻数
         state[3] = 0x10325476L; // 定义state为RFC1321中定义的标准幻数
         count[0] = count[1] = 0L; // 初始化为0
-        resultStr = "";// 初始化resultStr字符串为空
+        //resultStr = ""; // 初始化resultStr字符串为空
         for (int i = 0; i < 16; i++) {
-            digest[i] = 0;// 初始化digest数组元素为0
+            digest[i] = 0; // 初始化digest数组元素为0
         }
-        return;
     }
 
     // 定义F G H I 为4个基数 ，即为4个基本的MD5函数,进行简单的位运算
@@ -255,17 +255,6 @@ public final class MD5Impl implements CipherNoKey {
         return b > 0 ? b : (b & 0x7F + 128);
     }
 
-    // 把byte类型的数据转换成十六进制ASCII字符表示
-    private static String byteToHEX(byte in) {
-        char[] DigitStr = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                'A', 'B', 'C', 'D', 'E', 'F' };
-        char[] out = new char[2];
-        out[0] = DigitStr[(in >> 4) & 0x0F]; // 取高4位
-        out[1] = DigitStr[in & 0x0F]; // 取低4位
-        String s = new String(out);
-        return s;
-    }
-
     // 将long型数组按顺序拆成byte型数组,长度为len
     private void Encode(byte[] output, long[] input, int len) {
         int i, j;
@@ -281,10 +270,10 @@ public final class MD5Impl implements CipherNoKey {
     private void Decode(long[] output, byte[] input, int len) {
         int i, j;
         for (i = 0, j = 0; j < len; i++, j += 4) {
-            output[i] = byteToul(input[j]) | (byteToul(input[j + 1]) << 8)
+            output[i] = byteToul(input[j])
+                    | (byteToul(input[j + 1]) << 8)
                     | (byteToul(input[j + 2]) << 16)
                     | (byteToul(input[j + 3]) << 24);
         }
-        return;
     }
 }

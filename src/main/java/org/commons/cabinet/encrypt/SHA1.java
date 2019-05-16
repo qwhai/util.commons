@@ -1,18 +1,18 @@
-package org.commons.cabinet.cipher.impl;
+package org.commons.cabinet.encrypt;
 
-import org.commons.cabinet.excep.IrreversibleException;
-import org.commons.cabinet.cipher.interf.CipherNoKey;
+import org.commons.cabinet.ByteUtils;
+import org.commons.cabinet.encrypt.interf.Encoder;
 
 /**
  * SHA1哈希加密策略实现
  *
  * Create Date: 2015-12-15
- * Last Modify: 2016-04-22
+ * Last Modify: 2019-05-16
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
  */
-public final class SHA1Impl implements CipherNoKey {
+public final class SHA1 implements Encoder {
 
     private final int[] abcde = { 0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476, 0xc3d2e1f0 };
     // 摘要数据存储数组
@@ -21,16 +21,17 @@ public final class SHA1Impl implements CipherNoKey {
     private int[] tmpData = new int[80];
 
     @Override
-    public byte[] encryption(String plaintext) {
-        String result = getDigestOfString(plaintext.getBytes());
-        return result.toUpperCase().getBytes();
+    public byte[] encode(byte[] src) {
+        return getDigestOfBytes(src);
     }
 
     @Override
-    public String decryption(byte[] ciphertext) throws IrreversibleException {
-        throw new IrreversibleException("SHA1采用哈希算法加密，不可逆转。");
+    public byte[] encode(String src) {
+        return encode(src.getBytes());
     }
-    
+
+    // ------------------------------------------------- 内部方法分隔线 --------------------------------------------------
+
     // 计算sha-1摘要
     private int process_input_bytes(byte[] bytedata) {
         // 初试化常量
@@ -193,22 +194,11 @@ public final class SHA1Impl implements CipherNoKey {
         byteData[i + 3] = (byte) intValue;
     }
 
-    // 将字节转换为十六进制字符串
-    private static String byteToHexString(byte ib) {
-        char[] Digit = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A',
-                'B', 'C', 'D', 'E', 'F' };
-        char[] ob = new char[2];
-        ob[0] = Digit[(ib >>> 4) & 0X0F];
-        ob[1] = Digit[ib & 0X0F];
-        String s = new String(ob);
-        return s;
-    }
-
     // 将字节数组转换为十六进制字符串
     private static String byteArrayToHexString(byte[] bytearray) {
         String strDigest = "";
         for (int i = 0; i < bytearray.length; i++) {
-            strDigest += byteToHexString(bytearray[i]);
+            strDigest = String.format("%s%s", strDigest, ByteUtils.byteToHexString(bytearray[i]));
         }
         return strDigest;
     }

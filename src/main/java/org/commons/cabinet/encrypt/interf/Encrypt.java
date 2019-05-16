@@ -1,4 +1,4 @@
-package org.commons.cabinet.cipher.interf;
+package org.commons.cabinet.encrypt.interf;
 
 /**
  * 公共的加密工具接口
@@ -9,4 +9,4 @@ package org.commons.cabinet.cipher.interf;
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
  */
-public interface Cipherable { }
+public interface Encrypt extends Encoder, Decoder { }

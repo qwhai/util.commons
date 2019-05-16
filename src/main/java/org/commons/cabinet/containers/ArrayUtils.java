@@ -13,7 +13,7 @@ import org.commons.cabinet.str.StringUtils;
  * 这个是一个数组工具类，处理与数组相关的操作
  *
  * Create Date: 2015‎-‎11‎-‎25
- * Last Modify: 2019-05-11
+ * Last Modify: 2019-05-16
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
@@ -23,9 +23,14 @@ public final class ArrayUtils {
     /**
      * 把字符串数组逐个添加到List列表中
      *
-     * @param list  被添加的List列表
-     * @param arr   待添加的字符串数组
-     * @param <T>   范型类型
+     * @param   list
+     *          被添加的List列表
+     *
+     * @param   arr
+     *          待添加的字符串数组
+     *
+     * @param   <T>
+     *          范型类型
      */
     public static <T> void copyToList(List<T> list, T[] arr) {
         Collections.addAll(list, arr);
@@ -34,10 +39,17 @@ public final class ArrayUtils {
     /**
      * 把字符串数组逐个添加到List列表中
      *
-     * @param list      被添加的List列表
-     * @param arr       待添加的字符串数组
-     * @param start     开始拷贝的下标
-     * @param <T>   范型类型
+     * @param   list
+     *          被添加的List列表
+     *
+     * @param   arr
+     *          待添加的字符串数组
+     *
+     * @param   start
+     *          开始拷贝的下标
+     *
+     * @param   <T>
+     *          范型类型
      */
     public static <T> void copyToList(List<T> list, T[] arr, int start) {
         copyToList(list, arr, start, arr.length - start);
@@ -46,11 +58,20 @@ public final class ArrayUtils {
     /**
      * 把字符串数组逐个添加到List列表中
      *
-     * @param list      被添加的List列表
-     * @param arr       待添加的字符串数组
-     * @param start     开始拷贝的下标
-     * @param length    拷贝长度
-     * @param <T>   范型类型
+     * @param   list
+     *          被添加的List列表
+     *
+     * @param   arr
+     *          待添加的字符串数组
+     *
+     * @param   start
+     *          开始拷贝的下标
+     *
+     * @param   length
+     *          拷贝长度
+     *
+     * @param   <T>
+     *          范型类型
      */
     public static <T> void copyToList(List<T> list, T[] arr, int start, int length) {
         int end = Math.min(arr.length, start + length);
@@ -62,12 +83,13 @@ public final class ArrayUtils {
     /**
      * 获得数组中的最大值
      * 
-     * @param arr
-     *      待比较的数组
-     * @return
-     *      最大值
-     * @throws LengthZeroException
-     *      LengthZeroException
+     * @param   arr
+     *          待比较的数组
+     *
+     * @return  最大值
+     *
+     * @throws  LengthZeroException
+     *          LengthZeroException
      */
     public static int maxValue(int[] arr) throws LengthZeroException {
         if (0 == arr.length)
@@ -86,20 +108,21 @@ public final class ArrayUtils {
     /**
      * 获得数组中的最大值
      * 
-     * @param array
-     *      待比较的数组
-     * @return
-     *      最大值
-     * @throws LengthZeroException
-     *      LengthZeroException
+     * @param   arr
+     *          待比较的数组
+     *
+     * @return  最大值
+     *
+     * @throws  LengthZeroException
+     *          LengthZeroException
      */
-    public static long maxValue(long[] array) throws LengthZeroException {
-        if (array.length == 0) {
+    public static long maxValue(long[] arr) throws LengthZeroException {
+        if (arr.length == 0) {
             throw new LengthZeroException("");
         }
 
-        long max = array[0];
-        for (long data : array) {
+        long max = arr[0];
+        for (long data : arr) {
             if (max < data) {
                 max = data;
             }
@@ -111,12 +134,13 @@ public final class ArrayUtils {
     /**
      * 获得数组中的最大值
      * 
-     * @param array
-     *      待比较的数组
-     * @return
-     *      最大值
-     * @throws LengthZeroException
-     *      LengthZeroException
+     * @param   array
+     *          待比较的数组
+     *
+     * @return  最大值
+     *
+     * @throws  LengthZeroException
+     *          LengthZeroException
      */
     public static double maxValue(double[] array) throws LengthZeroException {
         if (array.length == 0) {
@@ -136,12 +160,13 @@ public final class ArrayUtils {
     /**
      * 获得数组中的最大值
      * 
-     * @param array
-     *      待比较的数组
-     * @return
-     *      最大值
-     * @throws LengthZeroException
-     *      LengthZeroException
+     * @param   array
+     *          待比较的数组
+     *
+     * @return  最大值
+     *
+     * @throws  LengthZeroException
+     *          LengthZeroException
      */
     public static float maxValue(float[] array) throws LengthZeroException {
         if (array.length == 0) {
@@ -161,9 +186,13 @@ public final class ArrayUtils {
     /**
      * 获得数组中的最大值
      *
-     * @param arr   待比较的数组
-     * @param <T>   范型类型
-     * @return      最大值
+     * @param   arr
+     *          待比较的数组
+     *
+     * @param   <T>
+     *          范型类型
+     *
+     * @return  最大值
      */
     public static <T extends Comparable> T maxValue(T[] arr) throws LengthZeroException {
         if (0 == arr.length)
@@ -182,10 +211,10 @@ public final class ArrayUtils {
     /**
      * 求数组中一个连续子序列和的最大值
      * 
-     * @param arr
-     *      输入数组
-     * @return
-     *      最大和
+     * @param   arr
+     *          输入数组
+     *
+     * @return  最大和
      */
     public static int maxSum(int[] arr) {
         if (null == arr || 0 == arr.length)
@@ -205,10 +234,10 @@ public final class ArrayUtils {
     /**
      * 求数组中一个连续子序列和的最大值
      * 
-     * @param array
-     *      输入数组
-     * @return
-     *      最大和
+     * @param   array
+     *          输入数组
+     *
+     * @return  最大和
      */
     public static long maxSum(long[] array) {
         if (array == null || array.length == 0) {
@@ -229,21 +258,21 @@ public final class ArrayUtils {
     /**
      * 求数组中一个连续子序列和的最大值
      * 
-     * @param array
-     *      输入数组
-     * @return
-     *      最大和
+     * @param   arr
+     *          输入数组
+     *
+     * @return  最大和
      */
-    public static float maxSum(float[] array) {
-        if (array == null || array.length == 0) {
+    public static float maxSum(float[] arr) {
+        if (arr == null || arr.length == 0) {
             return 0;
         }
         
         float maxEndIndex = 0;
         float maxSum = 0;
-        int length = array.length;
+        int length = arr.length;
         for (int i = 0; i < length; i++) {
-            maxEndIndex = Math.max(maxEndIndex + array[i], 0);
+            maxEndIndex = Math.max(maxEndIndex + arr[i], 0);
             maxSum = Math.max(maxSum, maxEndIndex);
         }
         
@@ -253,19 +282,19 @@ public final class ArrayUtils {
     /**
      * 求数组中一个连续子序列和的最大值
      * 
-     * @param array
-     *      输入数组
-     * @return
-     *      最大和
+     * @param   arr
+     *          输入数组
+     *
+     * @return  最大和
      */
-    public static double maxSum(double[] array) {
-        if (array == null || array.length == 0)
+    public static double maxSum(double[] arr) {
+        if (arr == null || arr.length == 0)
             return 0;
         
         double maxEndIndex = 0;
         double maxSum = 0;
 
-        for (double item : array) {
+        for (double item : arr) {
             maxEndIndex = Math.max(maxEndIndex + item, 0);
             maxSum = Math.max(maxSum, maxEndIndex);
         }
@@ -276,21 +305,21 @@ public final class ArrayUtils {
     /**
      * 打印数组
      * 
-     * @param objects
-     *      数组
+     * @param   objects
+     *          数组
      */
     public static void show(Object[] objects) {
         System.out.println(Arrays.toString(objects));
     }
     
     /**
-     * 打印数组
+     * 返回数组字符串表示
      * 
-     * @param array
-     *      数组
+     * @param   arr
+     *          数组
      */
-    public static void show(byte[] array) {
-        System.out.println(Arrays.toString(array));
+    public static String output(byte[] arr) {
+        return Arrays.toString(arr);
     }
     
     /**
