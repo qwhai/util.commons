@@ -21,12 +21,12 @@ public final class SHA1 implements Encoder {
     private int[] tmpData = new int[80];
 
     @Override
-    public byte[] encode(byte[] src) {
-        return getDigestOfBytes(src);
+    public String encode(byte[] src) {
+        return new String(getDigestOfBytes(src)).toLowerCase();
     }
 
     @Override
-    public byte[] encode(String src) {
+    public String encode(String src) {
         return encode(src.getBytes());
     }
 

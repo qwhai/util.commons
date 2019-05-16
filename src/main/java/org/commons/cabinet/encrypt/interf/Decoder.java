@@ -1,7 +1,7 @@
 package org.commons.cabinet.encrypt.interf;
 
 /**
- * 解密接口
+ * 解码接口
  *
  * Create Time: 2019/05/16 13:54
  * Last Modify: 2019/05/16
@@ -10,6 +10,6 @@ package org.commons.cabinet.encrypt.interf;
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
  */
 public interface Decoder {
-    byte[] decode(byte[] src);
-    byte[] decode(String src);
+    String decode(byte[] src);
+    String decode(String src);
 }

@@ -1,6 +1,7 @@
 package org.commons.cabinet.encrypt;
 
-import org.commons.cabinet.encrypt.interf.Encrypt;
+import org.commons.cabinet.encrypt.interf.Decoder;
+import org.commons.cabinet.encrypt.interf.Encoder;
 
 /**
  * Base64加密策略
@@ -11,7 +12,7 @@ import org.commons.cabinet.encrypt.interf.Encrypt;
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
  */
-public final class Base64 implements Encrypt {
+public final class Base64 implements Encoder, Decoder {
 
     @SuppressWarnings("unused")
     private static final char[] base64EncodeChars = new char[] {
@@ -34,22 +35,22 @@ public final class Base64 implements Encrypt {
     };
 
     @Override
-    public byte[] encode(byte[] src) {
-        return java.util.Base64.getEncoder().encode(src);
+    public String encode(byte[] src) {
+        return new String(java.util.Base64.getEncoder().encode(src));
     }
 
     @Override
-    public byte[] encode(String src) {
+    public String encode(String src) {
         return encode(src.getBytes());
     }
 
     @Override
-    public byte[] decode(byte[] src) {
-        return java.util.Base64.getDecoder().decode(src);
+    public String decode(byte[] src) {
+        return new String(java.util.Base64.getDecoder().decode(src));
     }
 
     @Override
-    public byte[] decode(String src) {
-        return java.util.Base64.getDecoder().decode(src);
+    public String decode(String src) {
+        return new String(java.util.Base64.getDecoder().decode(src));
     }
 }

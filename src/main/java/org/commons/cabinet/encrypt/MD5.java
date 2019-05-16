@@ -39,7 +39,7 @@ public final class MD5 implements Encoder {
     private byte[] digest = new byte[16];
 
     @Override
-    public byte[] encode(byte[] src) {
+    public String encode(byte[] src) {
         md5Init(); // 初始化
         md5Update(src, src.length); // 调用MD5的主计算过程
         md5Final(); // 输出结果到digest数组中
@@ -50,11 +50,11 @@ public final class MD5 implements Encoder {
             data = String.format("%s%s", data, ByteUtils.byteToHexString(digest[i]));
         }
 
-        return data.getBytes();
+        return data.toLowerCase();
     }
 
     @Override
-    public byte[] encode(String src) {
+    public String encode(String src) {
         return encode(src.getBytes());
     }
 

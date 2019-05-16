@@ -2,6 +2,7 @@ package org.commons.cabinet.encrypt;
 
 import java.util.Arrays;
 
+import org.commons.cabinet.encrypt.interf.Decrypt;
 import org.commons.cabinet.encrypt.interf.Encrypt;
 
 /**
@@ -13,7 +14,7 @@ import org.commons.cabinet.encrypt.interf.Encrypt;
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
  */
-public final class SMS4 implements Encrypt {
+public final class SMS4 implements Encrypt, Decrypt {
 
     private static final int ENCRYPT = 1;
     private static final int DECRYPT = 0;
@@ -69,24 +70,13 @@ public final class SMS4 implements Encrypt {
     }
 
     @Override
-    public byte[] encode(byte[] src) {
-        return null == key ? null : encodeSMS4(supplement(src), key);
+    public byte[] decrypt(byte[] cipher) {
+        return null == key ? null : decodeSMS4(cipher, key);
     }
 
     @Override
-    public byte[] encode(String src) {
-        return encode(supplement(src).getBytes());
-    }
-
-    @Override
-    public byte[] decode(byte[] src) {
-        return null == key ? null : decodeSMS4(src, key);
-    }
-
-    @Override
-    public byte[] decode(String src) {
-        // TODO
-        return new byte[0];
+    public byte[] encrypt(byte[] plain) {
+        return null == key ? null : encodeSMS4(supplement(plain), key);
     }
 
     // ------------------------------------------------- 内部方法分隔线 --------------------------------------------------

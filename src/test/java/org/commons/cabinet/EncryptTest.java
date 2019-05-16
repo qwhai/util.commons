@@ -2,6 +2,8 @@ package org.commons.cabinet;
 
 import org.commons.cabinet.containers.ArrayUtils;
 import org.commons.cabinet.encrypt.*;
+import org.commons.cabinet.encrypt.interf.Decoder;
+import org.commons.cabinet.encrypt.interf.Decrypt;
 import org.commons.cabinet.encrypt.interf.Encoder;
 import org.commons.cabinet.encrypt.interf.Encrypt;
 import org.junit.Test;
@@ -19,84 +21,62 @@ public class EncryptTest extends Testable {
 
     @Test
     public void test1() {
-        Encrypt base64 = new Base64();
-        byte[] cipher = base64.encode("Hello world");
-        logger.info(new String(cipher));
+        Encoder encoder = new Base64();
+        logger.info(encoder.encode("Hello world"));
     }
 
     @Test
     public void test2() {
-        Encrypt base64 = new Base64();
-        byte[] cipher = base64.encode("你好，世界");
-        logger.info(new String(cipher));
+        Encoder encoder = new Base64();
+        logger.info(encoder.encode("你好，世界"));
     }
 
     @Test
     public void test3() {
-        Encrypt base64 = new Base64();
-        byte[] cipher = base64.encode("你好，世界".getBytes());
-        logger.info(new String(cipher));
+        Encoder encoder = new Base64();
+        logger.info(encoder.encode("你好，世界".getBytes()));
     }
 
     @Test
     public void test4() {
-        Encrypt base64 = new Base64();
-        byte[] data = base64.decode("SGVsbG8gd29ybGQ=".getBytes());
-        logger.info(new String(data));
+        Decoder decoder = new Base64();
+        logger.info(decoder.decode("SGVsbG8gd29ybGQ=".getBytes()));
     }
 
     @Test
     public void test5() {
-        Encrypt base64 = new Base64();
-        byte[] data = base64.decode("5L2g5aW977yM5LiW55WM".getBytes());
-        logger.info(new String(data));
+        Decoder decoder = new Base64();
+        logger.info(decoder.decode("5L2g5aW977yM5LiW55WM".getBytes()));
     }
 
     @Test
     public void test6() {
-        Encrypt base64 = new Base64();
-        byte[] data = base64.decode("5L2g5aW977yM5LiW55WM");
-        logger.info(new String(data));
+        Decoder decoder = new Base64();
+        logger.info(decoder.decode("5L2g5aW977yM5LiW55WM"));
     }
 
     @Test
     public void test7() {
-        Encoder md5 = new MD5();
-        byte[] cipher = md5.encode("Hello world");
-        logger.info(new String(cipher).toLowerCase());
+        Encoder encoder = new MD5();
+        logger.info(encoder.encode("Hello world"));
     }
 
     @Test
     public void test8() {
-        Encoder md5 = new MD5();
-        byte[] cipher = md5.encode("你好，世界");
-        logger.info(new String(cipher).toLowerCase());
+        Encoder encoder = new MD5();
+        logger.info(encoder.encode("你好，世界"));
     }
 
     @Test
     public void test9() {
-        Encoder sha1 = new SHA1();
-        byte[] cipher = sha1.encode("Hello world");
-
-        String s = "";
-        for (byte b : cipher) {
-            s = String.format("%s%s", s, ByteUtils.byteToHexString(b));
-        }
-
-        logger.info(s.toLowerCase());
+        Encoder encoder = new SHA1();
+        logger.info(encoder.encode("Hello world"));
     }
 
     @Test
     public void test10() {
-        Encoder sha1 = new SHA1();
-        byte[] cipher = sha1.encode("你好，世界");
-
-        String s = "";
-        for (byte b : cipher) {
-            s = String.format("%s%s", s, ByteUtils.byteToHexString(b));
-        }
-
-        logger.info(s.toLowerCase());
+        Encoder encoder = new SHA1();
+        logger.info(encoder.encode("你好，世界"));
     }
 
     @Test
@@ -110,7 +90,7 @@ public class EncryptTest extends Testable {
         Encrypt encrypt = new SMS4();
         ((SMS4) encrypt).setKey(key);
 
-        byte[] cipher = encrypt.encode(plaintext);
+        byte[] cipher = encrypt.encrypt(plaintext.getBytes());
         if (null == cipher) return;
         logger.info(ArrayUtils.output(cipher));
     }
@@ -126,29 +106,13 @@ public class EncryptTest extends Testable {
         Encrypt encrypt = new SMS4();
         ((SMS4) encrypt).setKey(key);
 
-        byte[] cipher = encrypt.encode(plaintext);
+        byte[] cipher = encrypt.encrypt(plaintext.getBytes());
         if (null == cipher) return;
         logger.info(ArrayUtils.output(cipher));
     }
 
     @Test
     public void test13() {
-        String plaintext = "你好，世界";
-        byte[] key = new byte[] {
-                0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
-                0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10
-        };
-
-        Encrypt encrypt = new SMS4();
-        ((SMS4) encrypt).setKey(key);
-
-        byte[] cipher = encrypt.encode(plaintext.getBytes());
-        if (null == cipher) return;
-        logger.info(ArrayUtils.output(cipher));
-    }
-
-    @Test
-    public void test14() {
         byte[] cipher = new byte[] {
                 -43, -115, -7, -92, 111, 82, 63, -69, 20, -32, 10, 62, -109, -35, 101, -55
         };
@@ -157,16 +121,16 @@ public class EncryptTest extends Testable {
                 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10
         };
 
-        Encrypt encrypt = new SMS4();
-        ((SMS4) encrypt).setKey(key);
+        Decrypt decrypt = new SMS4();
+        ((SMS4) decrypt).setKey(key);
 
-        byte[] data = encrypt.decode(cipher);
+        byte[] data = decrypt.decrypt(cipher);
         if (null == data) return;
         logger.info(new String(data).trim());
     }
 
     @Test
-    public void test15() {
+    public void test14() {
         byte[] cipher = new byte[] {
                 96, -87, -49, 31, -125, 29, -62, -74, -96, 1, 127, -8, -52, 107, -82, 8
         };
@@ -175,37 +139,23 @@ public class EncryptTest extends Testable {
                 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10
         };
 
-        Encrypt encrypt = new SMS4();
-        ((SMS4) encrypt).setKey(key);
+        Decrypt decrypt = new SMS4();
+        ((SMS4) decrypt).setKey(key);
 
-        byte[] data = encrypt.decode(cipher);
+        byte[] data = decrypt.decrypt(cipher);
         if (null == data) return;
         logger.info(new String(data).trim());
     }
 
     @Test
-    public void test16() {
+    public void test15() {
         Encoder encoder = new SHA256();
-        byte[] cipher = encoder.encode("你好，世界".getBytes());
-
-        String s = "";
-        for (byte b : cipher) {
-            s = String.format("%s%s", s, ByteUtils.byteToHexString(b));
-        }
-
-        logger.info(s.toLowerCase());
+        logger.info(encoder.encode("你好，世界".getBytes()));
     }
 
     @Test
-    public void test17() {
+    public void test16() {
         Encoder encoder = new SHA256();
-        byte[] cipher = encoder.encode("你好，世界");
-
-        String s = "";
-        for (byte b : cipher) {
-            s = String.format("%s%s", s, ByteUtils.byteToHexString(b));
-        }
-
-        logger.info(s.toLowerCase());
+        logger.info(encoder.encode("你好，世界"));
     }
 }

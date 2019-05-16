@@ -20,12 +20,12 @@ public class SHA256 implements Encoder {
     private final Logger logger = Logger.getLogger(SHA256.class);
 
     @Override
-    public byte[] encode(byte[] src) {
+    public String encode(byte[] src) {
         MessageDigest digest;
         try {
             digest = MessageDigest.getInstance("SHA-256");
             digest.update(src);
-            return digest.digest();
+            return new String(digest.digest());
         } catch (NoSuchAlgorithmException ex) {
             logger.error(ex.getMessage());
             return null;
@@ -33,7 +33,7 @@ public class SHA256 implements Encoder {
     }
 
     @Override
-    public byte[] encode(String src) {
+    public String encode(String src) {
         return encode(src.getBytes());
     }
 }
