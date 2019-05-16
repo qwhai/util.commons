@@ -13,22 +13,15 @@ import org.commons.cabinet.str.match.impl.KMP;
 import org.commons.cabinet.str.match.poke.StringMatchUtils;
 
 /**
- * <p>
  * 与字符串操作相关的工具类
- * </p>
- * Create Date: 2015年11月15日
- * Last Modify: 2016年5月26日
+ *
+ * Create Date: 2015-11-15
+ * Last Modify: 2019-05-16
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
  */
 public class StringUtils {
-
-    // 这里定义了构造器为private之后还要抛出异常的原因是，
-    // 因为要防止通过反射机制来实例化(反射可以无视防止权限)
-    private StringUtils() throws CannotInstanceException {
-        throw new CannotInstanceException("不要试图实例化我");
-    }
 
     /**
      * 判断一个字符串是否为空字符串
@@ -38,11 +31,7 @@ public class StringUtils {
      * @return 是否为空字符串
      */
     public static boolean isEmpty(String text) {
-        if (text == null || text.length() == 0) {
-            return true;
-        }
-
-        return false;
+        return text == null || text.length() == 0;
     }
     
     /**

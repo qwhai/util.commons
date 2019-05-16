@@ -28,9 +28,8 @@
   - [ArrayUtils](src/main/java/org/commons/cabinet/containers/ArrayUtils.java)
   - ListUtils
   - MapUtils
-- FileUtils
+- IO
   - [FileIO](src/main/java/org/commons/cabinet/io/FileIO.java)
-  - 文件检索工具
 - SerializationUtils
 - ThreadUtils
 - 常量类

@@ -1,12 +1,7 @@
 package org.commons.cabinet.images;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
-
-import org.commons.cabinet.io.FileUtils;
 import org.commons.cabinet.images.interf.ImageInterface;
 import org.commons.cabinet.images.libs.AnimatedGifEncoder;
 

@@ -1,5 +1,6 @@
 package org.commons.cabinet;
 
+import org.commons.cabinet.io.CopyType;
 import org.commons.cabinet.io.FileIO;
 import org.junit.Assert;
 import org.junit.Test;
@@ -184,5 +185,95 @@ public class FileIOTest extends Testable {
     @Test
     public void test20() {
         Assert.assertTrue(FileIO.deleteFile("E:\\tmp\\3\\1112.txt"));
+    }
+
+    @Test
+    public void test21() {
+        try {
+            Assert.assertTrue(FileIO.copy("H:\\reactor-siemens.pdf", "H:\\1\\reactor-siemens.pdf", CopyType.TRANSFER));
+        } catch (IOException ex) {
+            logger.info(ex.getMessage());
+        }
+    }
+
+    @Test
+    public void test22() {
+        try {
+            Assert.assertTrue(FileIO.copy("H:\\reactor-siemens.pdf", "H:\\1\\reactor-siemens.pdf", CopyType.MAPPING));
+        } catch (IOException ex) {
+            logger.info(ex.getMessage());
+        }
+    }
+
+    @Test
+    public void test23() {
+        try {
+            Assert.assertTrue(FileIO.copy("H:\\reactor-siemens.pdf", "H:\\1\\reactor-siemens.pdf", CopyType.BUFFER));
+        } catch (IOException ex) {
+            logger.info(ex.getMessage());
+        }
+    }
+
+    @Test
+    public void test24() {
+        try {
+            Assert.assertTrue(FileIO.copy("H:\\reactor-siemens.pdf", "H:\\1\\reactor-siemens.pdf"));
+        } catch (IOException ex) {
+            logger.info(ex.getMessage());
+        }
+    }
+
+    @Test
+    public void test25() {
+        try {
+            Assert.assertTrue(FileIO.replace("H:\\1\\1.txt", new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }, 2));
+        } catch (IOException ex) {
+            logger.error(ex.getMessage());
+        }
+    }
+
+    @Test
+    public void test26() {
+        try {
+            Assert.assertTrue(FileIO.replace("H:\\1\\1.txt", new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }));
+        } catch (IOException ex) {
+            logger.error(ex.getMessage());
+        }
+    }
+
+    @Test
+    public void test27() {
+        try {
+            Assert.assertTrue(FileIO.replace("H:\\1\\1.txt", new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }, 10));
+        } catch (IOException ex) {
+            logger.error(ex.getMessage());
+        }
+    }
+
+    @Test
+    public void test28() {
+        try {
+            Assert.assertTrue(FileIO.replace("H:\\1\\1.txt", new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }, 20));
+        } catch (IOException ex) {
+            logger.error(ex.getMessage());
+        }
+    }
+
+    @Test
+    public void test29() {
+        try {
+            Assert.assertTrue(FileIO.insert("H:\\1\\1.txt", "123", 2));
+        } catch (IOException ex) {
+            logger.error(ex.getMessage());
+        }
+    }
+
+    @Test
+    public void test30() {
+        try {
+            Assert.assertTrue(FileIO.insert("H:\\1\\1.txt", new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }, 2));
+        } catch (IOException ex) {
+            logger.error(ex.getMessage());
+        }
     }
 }

@@ -3,6 +3,9 @@ package org.commons.cabinet.io;
 import org.commons.cabinet.str.StringUtils;
 
 import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,7 +63,7 @@ public final class FileIO {
         BufferedInputStream in = new BufferedInputStream(new FileInputStream(path));
 
         byte[] bytes = new byte[2048];
-        int n = -1;
+        int n;
         List<Byte> data = new ArrayList<>();
         while ((n = in.read(bytes, 0, bytes.length)) != -1) {
             for (int i = 0; i < n; i++) {
@@ -93,7 +96,7 @@ public final class FileIO {
         BufferedInputStream in = new BufferedInputStream(new FileInputStream(path));
 
         byte[] bytes = new byte[2048];
-        int n = -1;
+        int n;
         StringBuilder sb = new StringBuilder();
         while ((n = in.read(bytes, 0, bytes.length)) != -1) {
             sb.append(new String(bytes, 0, n, StandardCharsets.UTF_8));
@@ -194,23 +197,178 @@ public final class FileIO {
         return append(path, content.getBytes(StandardCharsets.UTF_8));
     }
 
-    public static boolean insert(String path, String content) throws IOException {
-        // TODO
-        return false;
+    /**
+     * 在文件指定位置插入内容
+     *
+     * @param   path
+     *          文件路径
+     *
+     * @param   data
+     *          待插入数据
+     *
+     * @param   pos
+     *          待插入位置
+     *
+     * @return  true:追加成功 / false:追加失败
+     *
+     * @throws  IOException
+     *          文件读写异常
+     */
+    public static boolean insert(String path, byte[] data, int pos) throws IOException {
+        // 参数校验
+        File file = new File(path);
+        // 判断文件是否存在
+        if (!(file.exists() && file.isFile()))
+            throw new IOException("文件不存在");
+
+        // 判断pos是否合法
+        if ((pos < 0) || (pos > file.length()))
+            throw new IOException("position不合法");
+
+        // 创建临时文件
+        File tempFile = File.createTempFile("sss", ".temp", new File("d:/"));
+        // 用文件输入流、文件输出流对文件进行操作
+        FileOutputStream outputStream = new FileOutputStream(tempFile);
+        FileInputStream inputStream = new FileInputStream(tempFile);
+        // 在退出JVM退出时自动删除
+        tempFile.deleteOnExit();
+
+        // 创建RandomAccessFile流
+        RandomAccessFile raf = new RandomAccessFile(file, "rw");
+        // 文件指定位置到 pos
+        raf.seek(pos);
+
+        int tmp;
+        // 将pos位置后的内容写入临时文件
+        while (-1 != (tmp = raf.read()))
+            outputStream.write(tmp);
+
+        // 将追加内容 contents 写入 pos 位置
+        raf.seek(pos);
+        raf.write(data);
+
+        // 将临时文件写回文件，并将创建的流关闭
+        while ((tmp = inputStream.read()) != -1)
+            raf.write(tmp);
+
+        raf.close();
+        outputStream.close();
+        inputStream.close();
+
+        return true;
     }
 
-    public static boolean insert(String path, byte[] data) throws IOException {
-        // TODO
-        return false;
+    /**
+     * 在文件指定位置插入内容
+     *
+     * @param   path
+     *          文件路径
+     *
+     * @param   content
+     *          待插入内容
+     *
+     * @param   pos
+     *          待插入位置
+     *
+     * @return  true:追加成功 / false:追加失败
+     *
+     * @throws  IOException
+     *          文件读写异常
+     */
+    public static boolean insert(String path, String content, int pos) throws IOException {
+        return insert(path, content.getBytes(StandardCharsets.UTF_8), pos);
     }
 
-    public static boolean replace(String path, byte[] data, int seek) throws IOException {
-        // TODO
-        return false;
+    /**
+     * 替换文件中的内容
+     *
+     * @param   path
+     *          文件路径
+     *
+     * @param   data
+     *          待替换的数据
+     *
+     * @param   pos
+     *          起始位置
+     *
+     * @return  true: 成功 / false:失败
+     *
+     * @throws  IOException
+     *          文件读写异常
+     */
+    public static boolean replace(String path, byte[] data, int pos) throws IOException {
+        RandomAccessFile file = new RandomAccessFile(path, "rw");
+        file.seek(pos);
+        file.write(data);
+        file.close();
+
+        return true;
     }
 
+    /**
+     * 替换文件中的内容
+     *
+     * @param   path
+     *          文件路径
+     *
+     * @param   data
+     *          待替换的数据
+     *
+     * @return  true: 成功 / false:失败
+     *
+     * @throws  IOException
+     *          文件读写异常
+     */
     public static boolean replace(String path, byte[] data) throws IOException {
         return replace(path, data, 0);
+    }
+
+    /**
+     * 复制文件
+     *
+     * @param   source
+     *          原文件路径
+     *
+     * @param   target
+     *          目标文件路径
+     *
+     * @param   type
+     *          复制方法类型
+     *
+     * @return  true: 成功 / false:失败
+     *
+     * @throws  IOException
+     *          文件读写异常
+     */
+    public static boolean copy(String source, String target, CopyType type) throws IOException {
+        switch (type) {
+            case BUFFER:
+                return copyByBuffer(source,target);
+            case TRANSFER:
+                return copyByTransfer(source, target);
+            case MAPPING:
+                return copyByMapped(source,target);
+            default:
+                return copyByBuffer(source,target);
+        }
+    }
+
+    /**
+     * 复制文件
+     *
+     * @param   source
+     *          原文件
+     *
+     * @param   target
+     *          目标文件
+     *
+     * @return  true: 成功 / false:失败
+     *
+     * @throws  IOException
+     *          文件读写异常
+     */
+    public static boolean copy(String source, String target) throws IOException {
+        return copy(source, target, CopyType.BUFFER);
     }
 
     /**
@@ -388,5 +546,155 @@ public final class FileIO {
     public static boolean rename(String oldName, String newName) {
         File file = new File(oldName);
         return file.renameTo(new File(newName));
+    }
+
+    // ------------------------------------------------- 内部方法分隔线 --------------------------------------------------
+
+    /**
+     * 复制文件
+     *
+     * @param   source
+     *          原文件
+     *
+     * @param   target
+     *          目标文件
+     *
+     * @throws  IOException
+     *          读写异常
+     */
+    private static boolean copyByTransfer(File source, File target) throws IOException {
+        if (null == source || null == target)
+            throw new IOException("文件对象为空");
+
+        if (!source.exists())
+            throw new IOException("原文件不存在");
+
+        FileChannel in = new FileInputStream(source).getChannel();
+        FileChannel out = new FileOutputStream(target).getChannel();
+
+        in.transferTo(0, in.size(), out);
+
+        in.close();
+        out.close();
+
+        return true;
+    }
+
+    /**
+     * 复制文件（Transfer）
+     *
+     * @param   source
+     *          原文件
+     *
+     * @param   target
+     *          目标文件
+     *
+     * @return  true:成功 / false:失败
+     *
+     * @throws  IOException
+     *          文件读写异常
+     */
+    private static boolean copyByTransfer(String source, String target) throws IOException {
+        if (StringUtils.isEmpty(source) || StringUtils.isEmpty(target))
+            throw new IOException("文件名不能为空");
+
+        return copyByTransfer(new File(source), new File(target));
+    }
+
+    /**
+     * 复制文件（内存映射）
+     *
+     * @param   source
+     *          原文件
+     *
+     * @param   target
+     *          目标文件
+     *
+     * @return  true:成功 / false:失败
+     *
+     * @throws  IOException
+     *          文件读写异常
+     */
+    private static boolean copyByMapped(String source, String target) throws IOException {
+        RandomAccessFile readFile = new RandomAccessFile(source, "r");
+        RandomAccessFile writeFile = new RandomAccessFile(target, "rw");
+
+        long fileLength = readFile.length();
+
+        MappedByteBuffer in = readFile.getChannel().map(FileChannel.MapMode.READ_ONLY, 0, fileLength);
+        MappedByteBuffer out = writeFile.getChannel().map(FileChannel.MapMode.READ_WRITE, 0, fileLength);
+
+        for (int i = 0; i < fileLength; i++) {
+            out.put(in.get());
+        }
+
+        readFile.close();
+        writeFile.close();
+        in.clear();
+        out.clear();
+
+        return true;
+    }
+
+    /**
+     * 复制文件（Buffer）
+     *
+     * @param   source
+     *          原文件
+     *
+     * @param   target
+     *          目标文件
+     *
+     * @return  true:成功 / false:失败
+     *
+     * @throws  IOException
+     *          读写异常
+     */
+    private static boolean copyByBuffer(File source, File target) throws IOException {
+        if (null == source || null == target)
+            throw new IOException("文件对象为空");
+
+        if (!source.exists())
+            throw new IOException("原文件不存在");
+
+        FileInputStream inStream = new FileInputStream(source);
+        FileOutputStream outStream = new FileOutputStream(target);
+        FileChannel in = inStream.getChannel();
+        FileChannel out = outStream.getChannel();
+
+        ByteBuffer buffer = ByteBuffer.allocate(4096);
+        while (in.read(buffer) != -1) {
+            buffer.flip();
+            out.write(buffer);
+            buffer.clear();
+        }
+
+        inStream.close();
+        in.close();
+        outStream.close();
+        out.close();
+
+        return true;
+    }
+
+    /**
+     * 复制文件（Buffer）
+     *
+     * @param   source
+     *          原文件
+     *
+     * @param   target
+     *          目标文件
+     *
+     * @return  true:成功 / false:失败
+     *
+     * @throws  IOException
+     *          读写异常
+     */
+    private static boolean copyByBuffer(String source, String target) throws IOException {
+        if (StringUtils.isEmpty(source) || StringUtils.isEmpty(target))
+            throw new IOException("文件名不能为空");
+
+        return copyByBuffer(new File(source), new File(target));
     }
 }
