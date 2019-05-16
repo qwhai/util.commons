@@ -158,4 +158,36 @@ public class EncryptTest extends Testable {
         Encoder encoder = new SHA256();
         logger.info(encoder.encode("你好，世界"));
     }
+
+    @Test
+    public void test17() {
+        byte[] key = new byte[]{
+                0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
+                0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10
+        };
+
+        Encrypt encrypt = new AES();
+        ((AES) encrypt).setKey(key);
+
+        byte[] cipher = encrypt.encrypt("你好，世界".getBytes());
+        logger.info(ArrayUtils.output(cipher));
+    }
+
+    @Test
+    public void test18() {
+        byte[] cipher = new byte[] {
+                66, -49, -31, 51, 92, 103, -31, 104, -83, -57, 113, 40, 18, -116, -47, -58
+        };
+        byte[] key = new byte[]{
+                0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
+                0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10
+        };
+
+        Decrypt decrypt = new AES();
+        ((AES) decrypt).setKey(key);
+
+        byte[] plain = decrypt.decrypt(cipher);
+        logger.info(ArrayUtils.output(plain));
+        logger.info(new String(plain));
+    }
 }
