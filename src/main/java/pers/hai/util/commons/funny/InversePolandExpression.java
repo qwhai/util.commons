@@ -51,18 +51,14 @@ public final class InversePolandExpression {
     
     // 计算两个数的运算结果
     private double getResult(double num1, String op, double num2) {
-        if (isAddition(op)) {
+        if (isAddition(op))
             return num1 + num2;
-        }
-        if (isSubtraction(op)) {
+        if (isSubtraction(op))
             return num1 - num2;
-        }
-        if (isMultiplication(op)) {
+        if (isMultiplication(op))
             return num1 * num2;
-        }
-        if (isDivision(op)) {
+        if (isDivision(op))
             return num1 / num2;
-        }
         
         return 0;
     }
