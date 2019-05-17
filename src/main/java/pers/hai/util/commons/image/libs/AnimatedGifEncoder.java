@@ -1,4 +1,4 @@
-package pers.hai.util.commons.images.libs;
+package pers.hai.util.commons.image.libs;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -223,7 +223,7 @@ public class AnimatedGifEncoder {
     }
 
     /**
-     * Sets quality of color quantization (conversion of images to the maximum
+     * Sets quality of color quantization (conversion of image to the maximum
      * 256 colors allowed by the GIF specification). Lower values (minimum = 1)
      * produce better colors, but slow processing significantly. 10 is the
      * default, and produces good color mapping at reasonable speeds. Values
@@ -264,7 +264,7 @@ public class AnimatedGifEncoder {
      * automatically.
      * 
      * @param os
-     *            OutputStream on which GIF images are written.
+     *            OutputStream on which GIF image are written.
      * @return false if initial write failed.
      */
     public boolean start(OutputStream os) {

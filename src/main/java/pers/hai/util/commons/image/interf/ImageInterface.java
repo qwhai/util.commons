@@ -1,4 +1,4 @@
-package pers.hai.util.commons.images.interf;
+package pers.hai.util.commons.image.interf;
 
 /**
  * <p>

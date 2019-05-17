@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package pers.hai.util.commons.images.filters.libs;
+package pers.hai.util.commons.image.filters.libs;
 
 import java.awt.image.*;
 

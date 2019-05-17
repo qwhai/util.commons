@@ -1,4 +1,4 @@
-package pers.hai.util.commons.images;
+package pers.hai.util.commons.image;
 
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import pers.hai.util.commons.images.interf.ImageInterface;
+import pers.hai.util.commons.image.interf.ImageInterface;
 
 /**
  * <p>

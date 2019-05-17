@@ -1,4 +1,4 @@
-package pers.hai.util.commons.images;
+package pers.hai.util.commons.image;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import pers.hai.util.commons.images.interf.ImageInterface;
+import pers.hai.util.commons.image.interf.ImageInterface;
 
 /**
  * <p>
@@ -66,7 +66,7 @@ public class TypeTransfromUtils implements ImageInterface {
             }
         }
 
-        // System.getProperty("user.dir") + "/images/binary.jpg"
+        // System.getProperty("user.dir") + "/image/binary.jpg"
         File newFile = new File(binaryImagePath);
         ImageIO.write(grayImage, "jpg", newFile);
     }
@@ -96,7 +96,7 @@ public class TypeTransfromUtils implements ImageInterface {
             }
         }
 
-        // System.getProperty("user.dir") + "/images/gray.jpg"
+        // System.getProperty("user.dir") + "/image/gray.jpg"
         File newFile = new File(grayImagePath);
         ImageIO.write(grayImage, "jpg", newFile);
     }

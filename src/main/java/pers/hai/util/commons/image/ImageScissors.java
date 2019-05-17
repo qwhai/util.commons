@@ -1,4 +1,4 @@
-package pers.hai.util.commons.images;
+package pers.hai.util.commons.image;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -13,7 +13,7 @@ import javax.imageio.ImageReadParam;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
-import pers.hai.util.commons.images.interf.ImageInterface;
+import pers.hai.util.commons.image.interf.ImageInterface;
 
 /**
  * <p>

@@ -1,4 +1,4 @@
-package pers.hai.util.commons.images;
+package pers.hai.util.commons.image;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -8,7 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import pers.hai.util.commons.math.MathUtils;
-import pers.hai.util.commons.images.interf.ImageInterface;
+import pers.hai.util.commons.image.interf.ImageInterface;
 
 /**
  * <p>

@@ -1,9 +1,9 @@
-package pers.hai.util.commons.images;
+package pers.hai.util.commons.image;
 
 import java.io.IOException;
 
-import pers.hai.util.commons.images.interf.ImageInterface;
-import pers.hai.util.commons.images.libs.AnimatedGifEncoder;
+import pers.hai.util.commons.image.interf.ImageInterface;
+import pers.hai.util.commons.image.libs.AnimatedGifEncoder;
 
 /**
  * <p>

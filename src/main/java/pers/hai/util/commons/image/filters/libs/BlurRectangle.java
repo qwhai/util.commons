@@ -1,4 +1,4 @@
-package pers.hai.util.commons.images.filters.libs;
+package pers.hai.util.commons.image.filters.libs;
 
 public class BlurRectangle {
 

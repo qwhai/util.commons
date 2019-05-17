@@ -1,10 +1,10 @@
-package pers.hai.util.commons.images;
+package pers.hai.util.commons.image;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.io.IOException;
 
-import pers.hai.util.commons.images.interf.ImageInterface;
+import pers.hai.util.commons.image.interf.ImageInterface;
 
 // jdk 1.8
 //import com.sun.image.codec.jpeg.JPEGCodec;
@@ -129,13 +129,4 @@ public class ImageOverlayUtils implements ImageInterface {
          * utils.putWatermarkText("F:/IMG/GB/3.jpg", "HELLO WATERMARK!", Color.GREEN, new Font("Courier New", Font.BOLD, 20), 330, 230);
          */
     }
-
-    public String getTag() {
-        return getClass().getName();
-    }
-
-    public void description() {
-        System.out.println("图片叠加工具类");
-    }
-
 }
