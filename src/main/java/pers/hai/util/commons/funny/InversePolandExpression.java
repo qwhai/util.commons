@@ -1,33 +1,25 @@
 package pers.hai.util.commons.funny;
 
-import pers.hai.util.commons.excep.CannotInstanceException;
-
 /**
- * <p>
  * 逆波兰表达式的计算
- * </p>
- * Create Date: 2015年12月9日
- * Last Modify: 2016年5月26日
+ *
+ * Create Date: 2015-12-09
+ * Last Modify: 2019-05-17
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
  */
 public final class InversePolandExpression {
 
-    // 工具类，禁止实例化
-    private InversePolandExpression() throws CannotInstanceException {
-        throw new CannotInstanceException("请不要试图实例化我");
-    }
-
     /**
      * 计算逆波兰表达式的结果
      * 
-     * @param polandExp
-     *      逆波兰表达式
-     * @return
-     *      计算结果
+     * @param   polandExp
+     *          逆波兰表达式
+     *
+     * @return  计算结果
      */
-    public static double inversePolandResult(String polandExp) {
+    public double inversePolandResult(String polandExp) {
         String[] ops = polandExp.split(" ");
         String[] stack = new String[ops.length];
         int stackIndex = 0;
@@ -58,7 +50,7 @@ public final class InversePolandExpression {
     }
     
     // 计算两个数的运算结果
-    private static double getResult(double num1, String op, double num2) {
+    private double getResult(double num1, String op, double num2) {
         if (isAddition(op)) {
             return num1 + num2;
         }
@@ -76,47 +68,27 @@ public final class InversePolandExpression {
     }
     
     // 是运算符
-    private static boolean isOperator(String op) {
-        if (isAddition(op) || isSubtraction(op) || isMultiplication(op) || isDivision(op)) {
-            return true;
-        }
-        
-        return false;
+    private boolean isOperator(String op) {
+        return isAddition(op) || isSubtraction(op) || isMultiplication(op) || isDivision(op);
     }
     
     // + 操作
-    private static boolean isAddition(String op) {
-        if (op.equals("+")) {
-            return true;
-        }
-        
-        return false;
+    private boolean isAddition(String op) {
+        return op.equals("+");
     }
     
     // - 操作
-    private static boolean isSubtraction(String op) {
-        if (op.equals("-")) {
-            return true;
-        }
-        
-        return false;
+    private boolean isSubtraction(String op) {
+        return op.equals("-");
     }
     
     // * 操作
-    private static boolean isMultiplication(String op) {
-        if (op.equals("*")) {
-            return true;
-        }
-        
-        return false;
+    private boolean isMultiplication(String op) {
+        return op.equals("×");
     }
     
     // / 操作
-    private static boolean isDivision(String op) {
-        if (op.equals("/")) {
-            return true;
-        }
-        
-        return false;
+    private boolean isDivision(String op) {
+        return op.equals("÷");
     }
 }
