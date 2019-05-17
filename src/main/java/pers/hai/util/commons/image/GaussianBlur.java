@@ -234,7 +234,7 @@ public class GaussianBlur implements ImageInterface {
     /*
      * 将读取的像素RGB值保存到二维数组中
      * 
-     * @param matrix
+     * @param setWord
      *            二维数组
      * @param values
      *            一维数组
@@ -252,7 +252,7 @@ public class GaussianBlur implements ImageInterface {
     /*
      * 计算平均值重新写入图片
      * 
-     * @param matrix
+     * @param setWord
      *      保存的二维数组
      * @return
      *      新的颜色RGB
