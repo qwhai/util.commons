@@ -23,7 +23,7 @@ public class WordMatrixTest {
         matrix.setColor(Color.BLUE);
         matrix.setWidth(64);
         matrix.setHeight(64);
-        matrix.setZoom(1.1);
+        matrix.setZoom(1.0);
         matrix.setWord('国');
 
         matrix.start();
