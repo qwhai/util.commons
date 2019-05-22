@@ -44,12 +44,13 @@ public class RandomCore {
      * 产生一个[start, end]之间的随机数
      * 这里无视start和end的大小关系
      * 
-     * @param start
-     *      开始边界
-     * @param end
-     *      结束边界
-     * @return
-     *      随机整数
+     * @param   start
+     *          开始边界
+     *
+     * @param   end
+     *          结束边界
+     *
+     * @return  随机整数
      */
     public int nextInt(int start, int end) {
         return random.nextInt(Math.abs(start - end) + 1) + Math.min(start, end);
@@ -160,12 +161,13 @@ public class RandomCore {
     /**
      * 随机生成和为S的N个正整数
      * 
-     * @param sum
-     *      和数
-     * @param count
-     *      随机数的个数
-     * @return
-     *      随机数列表
+     * @param   sum
+     *          和数
+     *
+     * @param   count
+     *          随机数的个数
+     *
+     * @return  随机数列表
      */
     public List<Integer> randomSum(int sum, int count) {
         /*
