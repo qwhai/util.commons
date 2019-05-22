@@ -5,7 +5,7 @@
 ![](https://img.shields.io/badge/maven-3.6.1-orangered.svg)
 ![](https://img.shields.io/badge/ide-IntelliJ%20IDEA-rosybrown.svg)
 ![](https://img.shields.io/badge/junit-4.11-darksalmon.svg)
-![](https://img.shields.io/badge/version-2.1.3-cornflowerblue.svg)
+![](https://img.shields.io/badge/version-2.1.4-cornflowerblue.svg)
 
 ----------------------------------------------
 
