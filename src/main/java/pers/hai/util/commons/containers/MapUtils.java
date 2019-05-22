@@ -6,23 +6,16 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-import pers.hai.util.commons.excep.CannotInstanceException;
-
 /**
  * 与Map相关的工具类
  *
  * Create Date: 2015‎-‎11‎-‎25‎
- * Last Modify: 2016-05-26
+ * Last Modify: 2019-05-22
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
  */
 public final class MapUtils {
-
-    // 禁止实例化
-    private MapUtils() throws CannotInstanceException {
-        throw new CannotInstanceException("不要试图实例化我");
-    }
 
     /**
      * 对一个Value类型为Integer的Map进行从大到小排序
@@ -34,12 +27,8 @@ public final class MapUtils {
      */
     public static List<Map.Entry<String, Integer>> sortIntegerMap(Map<String, Integer> map) {
         
-        List<Map.Entry<String, Integer>> mapSorted = new ArrayList<Map.Entry<String, Integer>>(map.entrySet());
-        Collections.sort(mapSorted, new Comparator<Map.Entry<String, Integer>>() {
-            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
-                return (o2.getValue()).compareTo(o1.getValue());
-            }
-        });
+        List<Map.Entry<String, Integer>> mapSorted = new ArrayList<>(map.entrySet());
+        Collections.sort(mapSorted, (o1, o2) -> o1.getValue().compareTo(o2.getValue()));
         
         return mapSorted;
     }
@@ -54,13 +43,9 @@ public final class MapUtils {
      */
     public static List<Map.Entry<String, Double>> sortDoubleMap(Map<String, Double> map) {
         
-        List<Map.Entry<String, Double>> mapSorted = new ArrayList<Map.Entry<String, Double>>(map.entrySet());
-        Collections.sort(mapSorted, new Comparator<Map.Entry<String, Double>>() {
-            public int compare(Map.Entry<String, Double> o1, Map.Entry<String, Double> o2) {
-                return (o2.getValue()).compareTo(o1.getValue());
-            }
-        });
-        
+        List<Map.Entry<String, Double>> mapSorted = new ArrayList<>(map.entrySet());
+        Collections.sort(mapSorted, (o1, o2) -> o1.getValue().compareTo(o2.getValue()));
+
         return mapSorted;
     }
 }

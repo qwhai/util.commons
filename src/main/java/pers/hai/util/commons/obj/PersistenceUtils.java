@@ -7,24 +7,17 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import pers.hai.util.commons.excep.CannotInstanceException;
-
 /**
  * <p>
  * 这个是一个关于对象的持久化的工具类
  * </p>
- * Create Date: 2015年11月25日
- * Last Modify: 2016年5月26日
+ * Create Date: 2015-11-25
+ * Last Modify: 2019-05-22
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
  */
-public class SerializationUtils {
-
-    // 禁止实例化
-    private SerializationUtils() throws CannotInstanceException {
-        throw new CannotInstanceException("不要试图实例化我");
-    }
+public class PersistenceUtils {
 
     /**
      * 将一个对象写入到磁盘
@@ -58,9 +51,7 @@ public class SerializationUtils {
             ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(path));
             object = objectInputStream.readObject();
             objectInputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         

@@ -5,7 +5,7 @@
 ![](https://img.shields.io/badge/maven-3.6.1-orangered.svg)
 ![](https://img.shields.io/badge/ide-IntelliJ%20IDEA-rosybrown.svg)
 ![](https://img.shields.io/badge/junit-4.11-darksalmon.svg)
-![](https://img.shields.io/badge/version-2.1.0-cornflowerblue.svg)
+![](https://img.shields.io/badge/version-2.1.3-cornflowerblue.svg)
 
 ----------------------------------------------
 
@@ -79,6 +79,8 @@
   - FileNameNotExistsException(文件不存在)
   - LengthZeroException(长度为0)
   - ObjectEmptyException(空对象，已过时)
+- 其他
+  - [ClassScanner](src/main/java/pers/hai/util/commons/scan/ClassScanner.java)
 
 ----------------------------------------------
 
