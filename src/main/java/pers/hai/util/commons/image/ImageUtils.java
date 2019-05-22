@@ -65,6 +65,8 @@ public class ImageUtils {
         }
     }
 
+    // ------------------------------------------------- 内部方法分隔线 --------------------------------------------------
+
     private static int getWatermarkLength(String waterMarkContent, Graphics2D g) {
         return g.getFontMetrics(g.getFont()).charsWidth(waterMarkContent.toCharArray(), 0, waterMarkContent.length());
     }

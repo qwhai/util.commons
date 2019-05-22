@@ -7,51 +7,37 @@ import java.util.Random;
 import pers.hai.util.commons.containers.ListUtils;
 
 /**
- * <p>
  * 随机数生成器
- * </p>
- * <p>
- * 目前0.1.1版本只支持生成随机整数
- * </p>
- * Create Date: 2015年12月22日
- * Last Modify: 2016年5月26日
+ *
+ * Create Date: 2015-12-22
+ * Last Modify: 2019-05-22
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
  */
-public class RandomUtils {
+public class RandomCore {
 
     private Random random = null;
     private int limit;
 
-    public RandomUtils() {
+    public RandomCore() {
         limit = -1;
         initEvent();
     }
     
-    public RandomUtils(int _limit) {
+    public RandomCore(int _limit) {
         limit = _limit;
         initEvent();
     }
 
-    /*
-     * 初始化随机数生成器
-     */
-    private void initEvent() {
-        random = new Random();
-    }
-
     /**
-     * 生成一个随机数。上限在创建对象实例的时候已经给出
+     * 生成一个随机数
+     * 上限在创建对象实例的时候已经给出
      * 
-     * @return
-     *      随机整数
+     * @return  随机整数
      */
     public int nextInt() {
-        if (limit < 0) {
-            return random.nextInt();
-        }
-        return random.nextInt(limit);
+        return 0 > limit ? random.nextInt() : random.nextInt(limit);
     }
     
     /**
@@ -72,19 +58,20 @@ public class RandomUtils {
     /**
      * 生产一个不重复的随机数序列
      * 
-     * @param start
-     *      随机数的最小边界
-     * @param end
-     *      随机数的最大边界
-     * @param count
-     *      随机数的个数
-     * @return
-     *      不重复的随机数序列
+     * @param   start
+     *          随机数的最小边界
+     *
+     * @param   end
+     *          随机数的最大边界
+     *
+     * @param   count
+     *          随机数的个数
+     *
+     * @return  不重复的随机数序列
      */
     public List<Integer> randomSet(int start, int end, int count) {
-        if (end - start + 1 < count) {
+        if (end - start + 1 < count)
             throw new IndexOutOfBoundsException("随机数的范围太小");
-        }
         
         List<Integer> randoms = new ArrayList<>();
         
@@ -108,62 +95,65 @@ public class RandomUtils {
         
         return randoms;
     }
-    
+
     /**
      * 生产一个不重复的随机数序列
-     * 
-     * @param start
-     *      随机数的最小边界
-     * @param end
-     *      随机数的最大边界
-     * @param count
-     *      随机数的个数
-     * @return
-     *      不重复的随机数序列
-     */
-    public List<Integer> randomSetByFloyd(int start, int end, int count) {
-        List<Integer> list = new ArrayList<>();
-        for (int i = end - count + 1; i < end; i++) {
-            int random = nextInt(start, i);
-            if (list.contains(random)) {
-                list.add(i);
-            } else {
-                list.add(random);
-            }
-        }
-        
-        return list;
-    }
-    
-    /**
-     * 生产一个不重复的随机数序列
-     * 
-     * @param end
-     *      随机数的最大边界
-     * @param count
-     *      随机数的个数
-     * @return
-     *      不重复的随机数序列
+     *
+     * @param   end
+     *          随机数的最大边界
+     *
+     * @param   count
+     *          随机数的个数
+     *
+     * @return  不重复的随机数序列
      */
     public List<Integer> randomSet(int end, int count) {
         return randomSet(0, end, count);
     }
     
     /**
+     * 生产一个不重复的随机数序列
+     * 
+     * @param   start
+     *          随机数的最小边界
+     *
+     * @param   end
+     *          随机数的最大边界
+     *
+     * @param   count
+     *          随机数的个数
+     *
+     * @return  不重复的随机数序列
+     */
+    public List<Integer> randomSetByFloyd(int start, int end, int count) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = end - count + 1; i <= end; i++) {
+            int random = nextInt(start, i);
+            if (list.contains(random))
+                list.add(i);
+            else
+                list.add(random);
+        }
+        
+        return list;
+    }
+    
+    /**
      * 生产一个可重复的随机数序列
      * 
-     * @param end
-     *      随机数的最大边界
-     * @param count
-     *      随机数的个数
-     * @return
-     *      随机数序列
+     * @param   end
+     *          随机数的最大边界
+     *
+     * @param   count
+     *          随机数的个数
+     *
+     * @return  随机数序列
      */
     public List<Integer> randomList(int end, int count) {
         List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++)
             list.add(nextInt(0, end));
-        }
+
         return list;
     }
     
@@ -189,11 +179,19 @@ public class RandomUtils {
         
         int size = randoms.size();
         result.add(randoms.get(0));
-        for (int i = 1; i < size; i++) {
+        for (int i = 1; i < size; i++)
             result.add(randoms.get(i) - randoms.get(i - 1));
-        }
+
         result.add(sum - randoms.get(size- 1));
-        
         return result;
+    }
+
+    // ------------------------------------------------- 内部方法分隔线 --------------------------------------------------
+
+    /*
+     * 初始化随机数生成器
+     */
+    private void initEvent() {
+        random = new Random();
     }
 }

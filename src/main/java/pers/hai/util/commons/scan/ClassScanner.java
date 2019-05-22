@@ -12,8 +12,8 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 /**
- * TODO
- * <p>
+ * 类名扫描器
+ *
  * Create Time: 2019-05-22 14:04
  * Last Modify: 2019-05-22
  *
@@ -90,6 +90,8 @@ public class ClassScanner {
 
         return classes;
     }
+
+    // ------------------------------------------------- 内部方法分隔线 --------------------------------------------------
 
     private void findAndAddClassesInPackageByFile(String packageName,
                                                  String packagePath,

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import pers.hai.util.commons.chars.CharUtils;
+import pers.hai.util.commons.CharUtils;
 import pers.hai.util.commons.excep.LengthZeroException;
 import pers.hai.util.commons.excep.NotNumberException;
 import pers.hai.util.commons.str.StringUtils;

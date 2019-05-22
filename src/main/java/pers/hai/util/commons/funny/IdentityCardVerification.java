@@ -1,8 +1,8 @@
 package pers.hai.util.commons.funny;
 
-import pers.hai.util.commons.chars.CharUtils;
+import pers.hai.util.commons.CharUtils;
 import pers.hai.util.commons.excep.CannotInstanceException;
-import pers.hai.util.commons.nums.RandomUtils;
+import pers.hai.util.commons.nums.RandomCore;
 
 /**
  * <p>
@@ -59,7 +59,7 @@ public final class IdentityCardVerification {
     
     public static void main(String[] args) {
         String prefix = "34082319900223";
-        RandomUtils random = new RandomUtils();
+        RandomCore random = new RandomCore();
         while(true) {
             int suff = random.nextInt(1000, 9999);
             if (isLegalIdentityCardNumber(prefix + suff)) {

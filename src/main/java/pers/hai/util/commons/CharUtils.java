@@ -1,4 +1,4 @@
-package pers.hai.util.commons.chars;
+package pers.hai.util.commons;
 
 /**
  * 字符串操作工具

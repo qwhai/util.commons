@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import pers.hai.util.commons.chars.CharUtils;
+import pers.hai.util.commons.CharUtils;
 import pers.hai.util.commons.excep.CannotInstanceException;
-import pers.hai.util.commons.nums.RandomUtils;
+import pers.hai.util.commons.nums.RandomCore;
 import pers.hai.util.commons.str.match.impl.KMP;
 import pers.hai.util.commons.str.match.poke.StringMatchUtils;
 
@@ -262,7 +262,7 @@ public class StringUtils {
      */
     public static String randomString(int length) {
         StringBuffer buffer = new StringBuffer();
-        RandomUtils random = new RandomUtils(26);
+        RandomCore random = new RandomCore(26);
         for (int i = 0; i < length; i++) {
             char c = (char) (random.nextInt() + 'a');
             buffer.append(c);
@@ -279,7 +279,7 @@ public class StringUtils {
      *      随机字符串
      */
     public static String randomString() {
-        return randomString(new RandomUtils(2 << 5).nextInt());
+        return randomString(new RandomCore(2 << 5).nextInt());
     }
     
     // TODO ------------------------------------------- 内部类标识分隔线 ----------------------------------------------------------

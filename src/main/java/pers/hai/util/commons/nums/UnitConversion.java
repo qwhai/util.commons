@@ -19,11 +19,6 @@ import pers.hai.util.commons.excep.CannotInstanceException;
  */
 public class UnitConversion {
 
-    // 禁止实例化
-    private UnitConversion() throws CannotInstanceException {
-        throw new CannotInstanceException("请不要试图实例化我");
-    }
-
     // TODO ------------------------------------------- 内部类标识分隔线 ----------------------------------------------------------
     
     /**

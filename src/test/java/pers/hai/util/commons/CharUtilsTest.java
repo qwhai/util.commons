@@ -1,6 +1,5 @@
 package pers.hai.util.commons;
 
-import pers.hai.util.commons.chars.CharUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
