@@ -7,24 +7,27 @@ import java.util.BitSet;
  * 用于一些去重过滤
  *
  * Create Date: 2015-11-15
- * Last Modify: 2019-05-10
+ * Last Modify: 2019-07-09
  * 
  * @author Q-WHai
  * @see <a href="https://github.com/qwhai">https://github.com/qwhai</a>
  */
 public final class BloomFilter {
-    
-    /* BitSet初始分配2^24个bit */
+
+    /**
+     * BitSet初始分配2^25个bit
+     */
     private static final int DEFAULT_SIZE = 1 << 25;
-    
-    /* 不同哈希函数的种子，一般应取质数 */
+    /**
+     * 不同哈希函数的种子，一般应取质数
+     */
     private static final int[] seeds = new int[] { 5, 7, 11, 13, 31, 37, 61 };
     
     private BitSet mBitSet = new BitSet(DEFAULT_SIZE);
-    
-    /* 哈希函数对象 */
+    /**
+     * 哈希函数对象
+     */
     private SimpleHash[] mHashs = new SimpleHash[seeds.length];
-
     /**
      * 构造器
      */
@@ -37,7 +40,7 @@ public final class BloomFilter {
     /**
      * 将字符串标记到bits中
      * 
-     * @param value
+     * @param   value
      *          待添加到过滤器中的字符串
      */
     public void add(String value) {
@@ -49,21 +52,18 @@ public final class BloomFilter {
     /**
      * 判断字符串是否已经被bits标记
      * 
-     * @param value
+     * @param   value
      *          待判断的字符串
      * @return
      *          返回是否被标记的结果
      */
     public boolean contains(String value) {
-        
-        if (value == null) {
+        if (value == null)
             return false;
-        }
         
         boolean ret = true;
-        for (SimpleHash f : mHashs) {
-            ret = ret && mBitSet.get(f.hash(value));
-        }
+        for (SimpleHash hash : mHashs)
+            ret = ret && mBitSet.get(hash.hash(value));
         
         return ret;
     }
@@ -91,7 +91,7 @@ public final class BloomFilter {
         /**
          * hash函数，采用简单的加权和hash
          * 
-         * @param value
+         * @param   value
          *          待哈希的字符串
          * @return
          *          返回哈希的整型结果
