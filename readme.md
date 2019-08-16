@@ -83,6 +83,11 @@
     - [CharUtils](src/main/java/pers/hai/util/commons/CharUtils.java)
     - [ClassScanner](src/main/java/pers/hai/util/commons/scan/ClassScanner.java)
 
+
+-----
+
+© Hickey Qian 2014 - 2019
+
 ----------------------------------------------
 
 - [Blog<sup>csdn</sup>](https://qwhai.blog.csdn.net/)
